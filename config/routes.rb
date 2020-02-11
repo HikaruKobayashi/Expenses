@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'income' => 'incomes#index'
-  get 'variablecosts' => 'variable_costs#index'
-  get 'fixedcosts' => 'fixed_costs#index'
+  root to: 'landing_pages#index'
+  resources :landing_pages
+  resources :incomes
+  resources :variable_costs
+  resources :fixed_costs
 end
