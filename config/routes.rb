@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'income' => 'incomes#index'
+  get 'variablecosts' => 'variable_costs#index'
+  get 'fixedcosts' => 'fixed_costs#index'
 end
