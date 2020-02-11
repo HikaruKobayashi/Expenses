@@ -1,4 +1,6 @@
-%h2 変動費登録
+%h2 変動費
+
+登録
 .col-12
   = form_with model: @variableCost, url: variable_costs_path, local: true do |form|
     - @variableCost.collection.each do |variable_cost|
@@ -9,4 +11,7 @@
         .form-group
           = f.label :content, '用途'
           = f.text_area :content, class: 'form-control', rows:5
+        .form-group
+          = f.label :money, '金額'
+          = f.text_area :money.to_s, class: 'form-control'
     = form.submit '登録'
