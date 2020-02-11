@@ -13,6 +13,7 @@ class VariableCostCollection
         VariableCost.new(
           name: value['name'],
           content: value['content'],
+          money: value['money']
         )
       end
     else

@@ -13,6 +13,7 @@ class FixedCostCollection
         FixedCost.new(
           name: value['name'],
           content: value['content'],
+          money: value['money']
         )
       end
     else
