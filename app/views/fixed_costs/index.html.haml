@@ -1,0 +1,30 @@
+%h2 固定費について
+.container
+  .row
+    - if @fixedCost.present?
+      .col-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th 日付
+              %th 商品名
+              %th 説明
+              %th 金額
+              %th 合計
+              -# %th
+              -# %th
+          %tbody
+            - @fixedCost.each do |f|
+              %tr
+                %th= f.created_at.strftime('%Y/%m/%d %H:%M')
+                %th= f.name
+                %th= f.content
+                %th= f.money.to_i
+                %th ?
+                -# %td
+                -#   = link_to "編集", edit_income_path
+                -# %td
+                -#   = link_to "/posts/#{income.id}/destroy", {method: "income"} do
+                -#     %button 削除
+    - else
+      %a 登録されている収入はありません。

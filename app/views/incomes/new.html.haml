@@ -1,0 +1,15 @@
+%h2 収入登録
+.col-12
+  = form_with model: @income, url: incomes_path, local: true do |form|
+    - @income.collection.each do |income|
+      = fields_for 'income[]', income do |f|
+        .form-group
+          = f.label :name, '商品名'
+          = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :content, '用途'
+          = f.text_area :content, class: 'form-control', rows:5
+        .form-group
+          = f.label :money, '金額'
+          = f.number_field :money, min: 0, max: 10000000
+    = form.submit '登録'

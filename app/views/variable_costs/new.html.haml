@@ -1,0 +1,17 @@
+%h2 変動費
+
+登録
+.col-12
+  = form_with model: @variableCost, url: variable_costs_path, local: true do |form|
+    - @variableCost.collection.each do |variable_cost|
+      = fields_for 'variable_cost[]', variable_cost do |f|
+        .form-group
+          = f.label :name, '商品名'
+          = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :content, '用途'
+          = f.text_area :content, class: 'form-control', rows:5
+        .form-group
+          = f.label :money, '金額'
+          = f.number_field :money, min: 0, max: 10000000
+    = form.submit '登録'
