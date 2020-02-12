@@ -12,4 +12,81 @@
 %a
   = link_to '固定費', fixed_costs_path
 
-%div ここに全体のグラフをchart.jsで出力する予定
+%canvas#myChart.col-10
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+-# = render 'layouts/footer'
+
+:javascript
+  document.addEventListener("turbolinks:load", function(){
+    const ctx = document.getElementById("myChart").getContext('2d');
+  
+    const original = Chart.defaults.global.legend.onClick;
+    Chart.defaults.global.legend.onClick = function(e, legendItem) {
+      update_caption(legendItem);
+      original.call(this, e, legendItem);
+    };
+    
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["2016", "2017", "2018", "2019"],
+        datasets: [{
+          type: 'line',
+          label: '合計',
+          lineTenstion: 0,
+          borderColor: "rgb(250,128,114)",
+          borderWidth: "3",
+          backgroundColor: "rgb(250,128,114)",
+          fill: false,
+          data: [3, 7, 11, 17],
+          pointStyle: "rect",
+          pointBorderColor: "rgb(250,128,114)",
+          pointBackgroundColor: "rgb(250,128,114)",
+          pointRadius: 10,
+          pointHoverRadius: 10,
+          pointHoverBackgroundColor: "rgb(250,128,114)",
+          pointHoverBorderColor: "rgb(250,128,114)",
+        }, {
+          label: '男性',
+          backgroundColor: "rgba(91,155,213,1)",
+          data: [1, 3, 5, 9],
+        }, {
+          label: '女性',
+          backgroundColor: "rgb(255,228,181)",
+          data: [2, 4, 6, 8],
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          padding:3,
+          fontSize: 26
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            categoryPercentage:0.8
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              stepSize: 2
+            }
+          }]
+        },
+        legend: {
+          labels: {
+            boxWidth: 12,
+            padding: 20
+          },
+          display: true
+        },
+        tooltips:{
+          mode:'label'
+        }
+      }
+    });
+  });
