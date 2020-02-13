@@ -1,18 +1,25 @@
 -# ----------------------------
--# sidebar
+-# header
 -# ----------------------------
-= render 'layouts/side_bar'
+= render 'layouts/header'
 
-%h2 lp
 
-%a
-  = link_to '収入', incomes_path
-%a
-  = link_to '変動費', variable_costs_path
-%a
-  = link_to '固定費', fixed_costs_path
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
 
-%canvas#myChart.col-10
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %a
+        = link_to '収入', incomes_path
+      %a
+        = link_to '変動費', variable_costs_path
+      %a
+        = link_to '固定費', fixed_costs_path
+
+      %canvas#myChart.col-12
 
 -# ----------------------------
 -# footer
@@ -30,11 +37,11 @@
     };
     
     const myChart = new Chart(ctx, {
-      type: 'bar',
+      type: 'doughnut',
       data: {
         labels: ["2016", "2017", "2018", "2019"],
         datasets: [{
-          type: 'line',
+          type: 'doughnut',
           label: '合計',
           lineTenstion: 0,
           borderColor: "rgb(250,128,114)",

@@ -1,4 +1,4 @@
-%h2 収入登録
+%h2 収入登録(3つ同時に生成することができる)
 .col-12
   = form_with model: @income, url: incomes_path, local: true do |form|
     - @income.collection.each do |income|
