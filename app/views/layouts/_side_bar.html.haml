@@ -2,38 +2,25 @@
   .sidebar-stickey
     %ul.nav.flex-colum.nav.nav-sidebar
       %li.nav-item
-        %a.nav-link Sidebar
+        %button.btn.btn-warning.side-btn
+          = link_to 'Home', root_path, class: 'nav-link'
     %ul.nav.flex-colum.nav.nav-sidebar
       %li.nav-item
-        %a.nav-link Sidebar
+        %button.btn.btn-warning.side-btn
+          = link_to '収入', incomes_path, class: 'nav-link'
     %ul.nav.flex-colum.nav.nav-sidebar
       %li.nav-item
-        %a.nav-link Sidebar
+        %button.btn.btn-warning.side-btn
+          = link_to '変動費', variable_costs_path, class: 'nav-link'
     %ul.nav.flex-colum.nav.nav-sidebar
       %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    %ul.nav.flex-colum.nav.nav-sidebar
-      %li.nav-item
-        %a.nav-link Sidebar
-    
+        %button.btn.btn-warning.side-btn
+          = link_to '固定費', fixed_costs_path, class: 'nav-link'
+    -# %ul.nav.flex-colum.nav.nav-sidebar
+    -#   %li.nav-item
+    -#     %a
+    -#       = link_to 'レポート', fixed_costs_path, class: 'nav-link'
+    -# %ul.nav.flex-colum.nav.nav-sidebar
+    -#   %li.nav-item
+    -#     %a
+    -#       = link_to 'カレンダー', fixed_costs_path, class: 'nav-link'

@@ -11,11 +11,14 @@
     = render 'layouts/side_bar'
 
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 変動費について
-      %button.btn
+      %h2 【変動費】
+      %button.btn.btn-warning
         = link_to '登録', new_variable_cost_path	
-      %canvas#myChart.col-12
       - if @variableCost.present?
+        .col-10
+          %h2 現在の総変動費は#{VariableCost.sum(:money)}円です。
+        %h2 週間レポート
+        %canvas#myChart.col-12
         .col-12
           %table.table.table-striped.table-bordered
             %thead
@@ -24,22 +27,21 @@
                 %th 商品名
                 %th 説明
                 %th 金額
-                %th 合計
-                -# %th
-                -# %th
+                %th 種類
+                %th
+                %th
             %tbody
-              - @variableCost.each do |income|
+              - @variableCost.each do |variableCost|
                 %tr
-                  %th= income.created_at.strftime('%Y/%m/%d %H:%M')
-                  %th= income.name
-                  %th= income.content
-                  %th= income.money.to_i
-                  %th ?
-                  -# %td
-                  -#   = link_to "編集", edit_income_path
-                  -# %td
-                  -#   = link_to "/posts/#{income.id}/destroy", {method: "income"} do
-                  -#     %button 削除
+                  %td= variableCost.created_at.strftime('%Y/%m/%d %H:%M')
+                  %td= variableCost.name
+                  %td= variableCost.content
+                  %td= variableCost.money.to_i
+                  %td
+                  %td
+                    = link_to "編集", edit_variable_cost_path(variableCost)
+                  %td
+                    = link_to "削除", variableCost, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }
       - else
         %a 登録されている収入はありません。
 
@@ -56,31 +58,11 @@
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["2016", "2017", "2018", "2019"],
+        labels: (gon.week),
         datasets: [{
-          type: 'line',
-          label: '合計',
-          lineTenstion: 0,
-          borderColor: "rgb(250,128,114)",
-          borderWidth: "3",
-          backgroundColor: "rgb(250,128,114)",
-          fill: false,
-          data: [3, 7, 11, 17],
-          pointStyle: "rect",
-          pointBorderColor: "rgb(250,128,114)",
-          pointBackgroundColor: "rgb(250,128,114)",
-          pointRadius: 10,
-          pointHoverRadius: 10,
-          pointHoverBackgroundColor: "rgb(250,128,114)",
-          pointHoverBorderColor: "rgb(250,128,114)",
-        }, {
-          label: '男性',
-          backgroundColor: "rgba(91,155,213,1)",
-          data: [1, 3, 5, 9],
-        }, {
-          label: '女性',
-          backgroundColor: "rgb(255,228,181)",
-          data: [2, 4, 6, 8],
+          label: '過去7日間の変動費(1単位/1000円)',
+          backgroundColor: "rgb(255, 0, 0)",
+          data: [(gon.money_month_7), (gon.money_6), (gon.money_5), (gon.money_4), (gon.money_3), (gon.money_2), (gon.money_1)],
         }]
       },
       options: {
