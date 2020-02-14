@@ -16,7 +16,7 @@
         = link_to '登録', new_fixed_cost_path	
       - if @fixedCost.present?
         .col-10
-          %h2 現在の総変動費は#{VariableCost.sum(:money)}円です。
+          %h2 現在の総変動費は#{FixedCost.sum(:money)}円です。
         %h2 週間レポート
         %canvas#myChart.col-12
         .col-12
