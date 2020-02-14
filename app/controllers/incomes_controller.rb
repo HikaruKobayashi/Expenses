@@ -33,7 +33,7 @@ class IncomesController < ApplicationController
   end
 
   def create
-    @income = IncomeCollection.new(income_params)
+    @income = IncomeCollection.new(incomes_params)
     if @income.save
       redirect_to ('/')
     else
@@ -43,7 +43,7 @@ class IncomesController < ApplicationController
 
   def update
     @income = Income.find(params[:id])
-    @income.assign_attributes(params[:income])
+    @income.assign_attributes(income_params)
     if @income.save
       redirect_to ('/')
     else
@@ -60,6 +60,10 @@ class IncomesController < ApplicationController
   private
 
   def income_params
+    params.require(:income).permit(:name, :content, :money, :label)
+  end
+  # 一括専用
+  def incomes_params
     params.require(:income)
   end
 end

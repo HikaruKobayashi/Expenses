@@ -45,7 +45,7 @@ class VariableCostsController < ApplicationController
   end
 
   def create
-    @variableCost = VariableCostCollection.new(variable_cost_params)
+    @variableCost = VariableCostCollection.new(variable_costs_params)
     if @variableCost.save
       redirect_to ('/')
     else
@@ -55,7 +55,7 @@ class VariableCostsController < ApplicationController
 
   def update
     @variableCost = VariableCost.find(params[:id])
-    @variableCost.assign_attributes(params[:variable_cost_params])
+    @variableCost.assign_attributes(variable_cost_params)
     if @variableCost.save
       redirect_to ('/')
     else
@@ -72,6 +72,10 @@ class VariableCostsController < ApplicationController
   private
 
   def variable_cost_params
+    params.require(:variable_cost).permit(:name, :content, :money)
+  end
+  # 一括専用
+  def variable_costs_params
     params.require(:variable_cost)
   end
 end

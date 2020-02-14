@@ -33,7 +33,7 @@ class FixedCostsController < ApplicationController
   end
 
   def create
-    @fixedCost = FixedCostCollection.new(fixed_cost_params)
+    @fixedCost = FixedCostCollection.new(fixed_costs_params)
     if @fixedCost.save
       redirect_to ('/')
     else
@@ -43,7 +43,7 @@ class FixedCostsController < ApplicationController
 
   def update
     @fixedCost = FixedCost.find(params[:id])
-    @fixedCost.assign_attributes(params[:fixed_cost_params])
+    @fixedCost.assign_attributes(fixed_cost_params)
     if @fixedCost.save
       redirect_to ('/')
     else
@@ -60,6 +60,10 @@ class FixedCostsController < ApplicationController
   private
 
   def fixed_cost_params
+    params.require(:fixed_cost).permit(:name, :content, :money)
+  end
+
+  def fixed_costs_params
     params.require(:fixed_cost)
   end
 end
