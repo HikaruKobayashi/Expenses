@@ -1,10 +1,42 @@
-%h2 lp
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
 
-%a
-  = link_to '収入', incomes_path
-%a
-  = link_to '変動費', variable_costs_path
-%a
-  = link_to '固定費', fixed_costs_path
 
-%div ここに全体のグラフをchart.jsで出力する予定
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %h2 【HOME】
+      %p 1単位 = 10,000円
+      %canvas#myChart.col-12
+
+:javascript
+  document.addEventListener("turbolinks:load", function(){
+    const ctx = document.getElementById("myChart").getContext('2d');
+  
+    const original = Chart.defaults.global.legend.onClick;
+    Chart.defaults.global.legend.onClick = function(e, legendItem) {
+      update_caption(legendItem);
+      original.call(this, e, legendItem);
+    };
+    
+    const myChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        datasets:[{
+          data: [(gon.income_sum), (gon.variable_cost_sum), (gon.fixed_cost_sum)],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 205, 86)"
+          ]
+        }]
+      }
+    });
+  });

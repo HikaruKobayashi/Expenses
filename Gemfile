@@ -17,6 +17,8 @@ gem 'erb2haml'
 gem 'sass-rails', '~> 5.0'
 # Use BootStrap ver4.3.1
 gem 'bootstrap', '~>4.3.1'
+# Use fontAwesome
+gem 'font-awesome-sass', '~> 5.4.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -30,6 +32,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use jQuery
 gem "jquery-rails"
+# Use Chart.js
+gem 'chart-js-rails', '~> 0.1.4'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -68,3 +72,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Add
+gem 'jquery-turbolinks'
+# railsとjsの連動
+gem 'gon'
