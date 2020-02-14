@@ -6,12 +6,12 @@ class VariableCostsController < ApplicationController
     # 日毎の総変動費 単位1万 TO DO DRY原則に反してる感がすごい
     gon.money_day = VariableCost.group("date(created_at)").sum(:money)
     # 曜日毎？
-    gon.money_7 = VariableCost.where(created_at: 6.day.ago.all_day).sum(:money) / 10000
-    gon.money_6 = VariableCost.where(created_at: 5.day.ago.all_day).sum(:money) / 10000
-    gon.money_5 = VariableCost.where(created_at: 4.day.ago.all_day).sum(:money) / 10000
-    gon.money_4 = VariableCost.where(created_at: 3.day.ago.all_day).sum(:money) / 10000
-    gon.money_3 = VariableCost.where(created_at: 2.day.ago.all_day).sum(:money) / 10000
-    gon.money_2 = VariableCost.where(created_at: 1.day.ago.all_day).sum(:money) / 10000
+    gon.money_7 = VariableCost.where(created_at: 6.day.ago.all_day).sum(:money) / 1000
+    gon.money_6 = VariableCost.where(created_at: 5.day.ago.all_day).sum(:money) / 1000
+    gon.money_5 = VariableCost.where(created_at: 4.day.ago.all_day).sum(:money) / 1000
+    gon.money_4 = VariableCost.where(created_at: 3.day.ago.all_day).sum(:money) / 1000
+    gon.money_3 = VariableCost.where(created_at: 2.day.ago.all_day).sum(:money) / 1000
+    gon.money_2 = VariableCost.where(created_at: 1.day.ago.all_day).sum(:money) / 1000
     gon.money_1 = VariableCost.where(created_at: Time.zone.now.all_day).sum(:money) / 1000
     
     gon.week = ["日付", "日付", "日付", "日付", "日付", "昨日", "今日"]

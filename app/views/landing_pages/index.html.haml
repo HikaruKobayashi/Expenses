@@ -11,32 +11,95 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 【HOME】
-      %p 1単位 = 10,000円
-      %canvas#myChart.col-12
+    - if @income.present? || @variable_cost.present? || @fixed_cost.present?
+      %div.col-8{ style: 'margin-left: 100px;'}
+        %h2 【ホーム】
+        .col-12
+          %h2 経済状況
+          %h4 - 現在の総収入は#{Income.sum(:money)}円です。
+          %h4 - 現在の総変動費は#{VariableCost.sum(:money)}円です。
+          %h4 - 現在の総固定費は#{FixedCost.sum(:money)}円です。
+          %p
+        %p <1単位 = 10,000円>
+        %canvas#myChart.col-12
+    - else
+      %h3 データがありません。
+      %h3 ← メニューから登録してみよう！
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
 
 :javascript
-  document.addEventListener("turbolinks:load", function(){
-    const ctx = document.getElementById("myChart").getContext('2d');
-  
-    const original = Chart.defaults.global.legend.onClick;
-    Chart.defaults.global.legend.onClick = function(e, legendItem) {
-      update_caption(legendItem);
-      original.call(this, e, legendItem);
-    };
-    
-    const myChart = new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        datasets:[{
-          data: [(gon.income_sum), (gon.variable_cost_sum), (gon.fixed_cost_sum)],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
-            "rgb(255, 205, 86)"
-          ]
-        }]
+  Chart.pluginService.register({
+    beforeDraw: function (chart) {
+      if (chart.config.options.elements.center) {
+        //Get ctx from string
+        var ctx = chart.chart.ctx;
+        
+        //Get options from the center object in options
+        var centerConfig = chart.config.options.elements.center;
+        var fontStyle = centerConfig.fontStyle || 'Arial';
+        var txt = centerConfig.text;
+        var color = centerConfig.color || '#000';
+        var sidePadding = centerConfig.sidePadding || 20;
+        var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
+        //Start with a base font of 30px
+        ctx.font = "30px " + fontStyle;
+
+        //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+        var stringWidth = ctx.measureText(txt).width;
+        var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+        // Find out how much the font can grow in width.
+        var widthRatio = elementWidth / stringWidth;
+        var newFontSize = Math.floor(30 * widthRatio);
+        var elementHeight = (chart.innerRadius * 2);
+
+        // Pick a new font size so it will not be larger than the height of label.
+        var fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+        //Set font settings to draw it correctly.
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+        var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+        ctx.font = fontSizeToUse+"px " + fontStyle;
+        ctx.fillStyle = color;
+        
+        //Draw text in center
+        ctx.fillText(txt, centerX, centerY);
       }
-    });
+    }
   });
+    var config = {
+      type: 'doughnut',
+      data: {
+      labels: [
+        "収入",
+        "変動費",
+        "固定費"
+      ],
+      datasets: [{
+        data: [(gon.income_sum), (gon.variable_cost_sum), (gon.fixed_cost_sum)],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)"
+        ]
+      }]
+    },
+    options: {
+      elements: {
+        center: {
+          text: "100%",
+          color: '#FF6384', // Default is #000000
+          fontStyle: 'Arial', // Default is Arial
+          sidePadding: 20 // Defualt is 20 (as a percentage)
+        }
+      }
+    }
+  };
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, config);

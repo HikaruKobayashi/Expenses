@@ -45,23 +45,28 @@
       - else
         %a 登録されている収入はありません。
 
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
+
 :javascript
   document.addEventListener("turbolinks:load", function(){
-    const ctx = document.getElementById("myChart").getContext('2d');
+    var ctx = document.getElementById("myChart").getContext('2d');
   
-    const original = Chart.defaults.global.legend.onClick;
+    var original = Chart.defaults.global.legend.onClick;
     Chart.defaults.global.legend.onClick = function(e, legendItem) {
       update_caption(legendItem);
       original.call(this, e, legendItem);
     };
     
-    const myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: (gon.week),
         datasets: [{
           label: '過去7日間の変動費(1単位/1000円)',
-          backgroundColor: "rgb(255, 0, 0)",
+          backgroundColor: "rgb(255,228,181)",
           data: [(gon.money_month_7), (gon.money_6), (gon.money_5), (gon.money_4), (gon.money_3), (gon.money_2), (gon.money_1)],
         }]
       },

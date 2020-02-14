@@ -11,9 +11,7 @@
     = render 'layouts/side_bar'
 
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 変動費
-
-      登録
+      %h2 変動費登録
       .col-12
         = form_with model: @variableCost, url: variable_costs_path, local: true do |form|
           - @variableCost.collection.each do |variable_cost|
@@ -27,4 +25,11 @@
               .form-group
                 = f.label :money, '金額'
                 = f.number_field :money, min: 0, max: 10000000
-          = form.submit '登録'
+          = form.submit '登録', class: 'btn btn-primary'
+          %button.btn.btn-danger
+            = link_to 'キャンセル', root_path, class: 'cancel-btn'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'

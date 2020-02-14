@@ -17,7 +17,7 @@ class IncomesController < ApplicationController
     gon.money_month_11 = Income.where(created_at: "2020-11-01".in_time_zone.all_month).sum(:money) / 10000
     gon.money_month_12 = Income.where(created_at: "2020-12-01".in_time_zone.all_month).sum(:money) / 10000
     # 1月から12月
-    gon.month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    gon.month = ["1月", "2月", "3月", "4月", "5月", "6月","7月", "8月", "9月", "10月", "11月", "12月"]
   end
 
   def show
