@@ -1,0 +1,28 @@
+%footer.footer
+  .container
+    .row
+      .col-sm-3
+        %h4.title Money Hub
+        %span.acount-icon
+          %a{:href => "#"}
+            %i.fa.fa-home.menu-icon
+            ホーム
+          %a{:href => "#"}
+            %i.fa.fa-coins.menu-icon
+            収入
+          %a{:href => "#"}
+            %i.fa.fa-comment-dollar.menu-icon
+            変動費
+          %a{:href => "#"}
+            %i.fa.fa-comment-dollar.menu-icon
+            固定費
+      -# - if current_user
+      -#   %li.nav-item
+      -#     %button.btn.btn-warning{type: 'button', style: 'margin: 5px;' }
+      -#       = link_to 'ログアウト', logout_path, method: :delete
+      -# - else
+      -#   %li.nav-item{ style: 'list-style: none;' }
+      -#     %button.btn.btn-warning{ type: 'button', style: 'margin: 5px;' }
+      -#       = link_to '管理者の方', login_path
+    %hr/
+    .row.text-center © 2020. Made by Hikaru.

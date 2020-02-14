@@ -45,17 +45,22 @@
       - else
         %a 登録されている収入はありません。
 
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
+
 :javascript
   document.addEventListener("turbolinks:load", function(){
-    const ctx = document.getElementById("myChart").getContext('2d');
+    var ctx = document.getElementById("myChart").getContext('2d');
   
-    const original = Chart.defaults.global.legend.onClick;
+    var original = Chart.defaults.global.legend.onClick;
     Chart.defaults.global.legend.onClick = function(e, legendItem) {
       update_caption(legendItem);
       original.call(this, e, legendItem);
     };
     
-    const myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: (gon.week),

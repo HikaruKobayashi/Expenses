@@ -1,0 +1,20 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %h2 集計
+      .col-12
+
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'

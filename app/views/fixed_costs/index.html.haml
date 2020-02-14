@@ -27,7 +27,6 @@
                 %th 商品名
                 %th 説明
                 %th 金額
-                %th 種類
                 %th
                 %th
             %tbody
@@ -37,7 +36,6 @@
                   %th= fixedCost.name
                   %th= fixedCost.content
                   %th= fixedCost.money.to_i
-                  %th
                   %td
                     = link_to "編集", edit_fixed_cost_path(fixedCost)
                   %td
@@ -45,17 +43,22 @@
       - else
         %a 登録されている収入はありません。
 
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
+
 :javascript
   document.addEventListener("turbolinks:load", function(){
-    const ctx = document.getElementById("myChart").getContext('2d');
+    var ctx = document.getElementById("myChart").getContext('2d');
   
-    const original = Chart.defaults.global.legend.onClick;
+    var original = Chart.defaults.global.legend.onClick;
     Chart.defaults.global.legend.onClick = function(e, legendItem) {
       update_caption(legendItem);
       original.call(this, e, legendItem);
     };
     
-    const myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: (gon.month),

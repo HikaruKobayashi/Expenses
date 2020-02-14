@@ -1,7 +1,70 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Merienda');
 
+.header {
+  height: 90px;
+  background-color: rgb(99,186,217);
+  color: rgb(255, 255, 255);
+}
+
+.header-icon {
+  font-size: 25px;
+  margin: 2px;
+}
+
 .side-btn {
   margin: 5px;
+  width: 120px;
 }
-/* Body */
+.menu-link,.menu-link:hover, .cancel-btn{
+  font-size: 19px;
+}
+.menu-link,.menu-link:hover, .cancel-btn, .cancel-btn:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.cancel-btn {
+  font-size: 15px;
+}
+
+.menu-icon {
+  font-size: 25px;
+}
+
+/* footer */
+.footer {
+  padding: 50px 0 20px 0;
+  background-color: rgb(232,238,238);
+  color: rgb(135, 140, 148);
+}
+.footer .title{text-align: left;color:rgb(135, 140, 148);font-size:25px;}
+
+
+.footer .social-icon{padding:0px;margin:0px;}
+.footer .social-icon a{display:inline-block;color:rgb(135, 140, 148);font-size:25px;padding:5px;}
+.footer .acount-icon a{display:block;color:rgb(135, 140, 148);font-size:18px;padding:5px;text-decoration:none;}
+.footer .acount-icon .fa{margin-right:25px;}
+
+
+.footer .category a {
+  text-decoration: none;
+  color:rgb(135, 140, 148);
+  display: inline-block;
+  padding: 5px 20px;
+  margin: 1px;
+  border-radius:4px;
+  margin-top: 6px;
+  background-color: rgb(255, 218, 185);
+  border: solid 1px rgb(245, 208, 175);
+}
+
+.footer .payment{margin:0px;padding:0px;list-style-type:none}
+.footer .payment li{list-style-type:none}
+.footer .payment li a {
+  text-decoration: none;
+  display: inline-block;
+  color: rgb(135, 140, 148);
+  font-size: 25px;
+  padding: 10px 10px;
+}

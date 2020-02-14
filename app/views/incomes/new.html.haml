@@ -11,7 +11,7 @@
     = render 'layouts/side_bar'
 
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 収入登録(3つ同時に生成することができる)
+      %h2 収入登録
       .col-12
         = form_with model: @income, url: incomes_path, local: true do |form|
           - @income.collection.each do |income|
@@ -28,4 +28,11 @@
               .form-group
                 %p 種類
                 = f.select :label, [['貯蓄', 'savings'], ['給与等', 'supply']]
-          = form.submit '登録'
+          = form.submit '登録', class: 'btn btn-primary'
+          %button.btn.btn-danger
+            = link_to 'キャンセル', root_path, class: 'cancel-btn'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
