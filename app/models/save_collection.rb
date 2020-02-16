@@ -1,24 +1,23 @@
-class IncomeCollection
+class SaveCollection
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   extend ActiveModel::Translation
   include ActiveModel::AttributeMethods
   include ActiveModel::Validations
-  INCOME_NUM = 3
+  SAVE_NUM = 2
   attr_accessor :collection
 
   def initialize(attributes = [])
     if attributes.present?
       self.collection = attributes.map do |value|
-        Income.new(
+        Save.new(
           name: value['name'],
           content: value['content'],
-          money: value['money'],
-          label: value['label']
+          money: value['money']
         )
       end
     else
-      self.collection = INCOME_NUM.times.map{ Income.new }
+      self.collection = SAVE_NUM.times.map{ Save.new }
     end
   end
 

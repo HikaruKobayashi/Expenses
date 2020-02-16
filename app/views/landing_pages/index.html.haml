@@ -105,13 +105,15 @@
       data: {
       labels: [
         "収入",
+        "貯金",
         "変動費",
         "固定費"
       ],
       datasets: [{
-        data: [(gon.income_sum), (gon.variable_cost_sum), (gon.fixed_cost_sum)],
+        data: [(gon.income_sum), (gon.save_sum), (gon.variable_cost_sum), (gon.fixed_cost_sum)],
         backgroundColor: [
           "rgb(255, 99, 132)",
+          "rgb(100, 122, 165)",
           "rgb(54, 162, 235)",
           "rgb(255, 205, 86)"
         ]
@@ -182,7 +184,7 @@
           "残り"
         ],
         datasets: [{
-          data: [(gon.income_sum), (gon.goal_value_sum)-(gon.income_sum)],
+          data: [(gon.save_sum), (gon.goal_value_sum)-(gon.save_sum)],
           backgroundColor: [
             "rgb(255, 99, 132)",
             "rgb(54, 162, 235)"
