@@ -10,10 +10,16 @@
     -# ----------------------------
     = render 'layouts/side_bar'
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 設定
+      %h2 【設定の編集】
+      %p 年間貯金目標額を編集する。
       .col-12
+        = form_for @landing_page do |f|
+          .form-group
+            = f.label :goal, '金額'
+            = f.number_field :goal, min: 0, max: 10000000
+          = f.submit '更新', class: 'btn btn-primary'
 
-
+          
 -# ----------------------------
 -# footer
 -# ----------------------------
