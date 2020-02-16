@@ -1,0 +1,188 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %h2 【収入集計レポート】
+      %p 期間を選択してください。
+      %button.btn.btn-warning.year-btn 年間レポート
+      %button.btn.btn-warning.monthly-btn 月間レポート
+      %button.btn.btn-warning.weekly-btn 週間レポート
+      %canvas#yearChart{ style: 'display: none;' }
+      %canvas#monthlyChart{ style: 'display: none;' }
+      %canvas#weeklyChart{ style: 'display: none;' }
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
+
+:javascript
+  $('.year-btn').click(function(){
+    $('#yearChart').css('display', '');
+    $('#monthlyChart').css('display', 'none');
+    $('#weeklyChart').css('display', 'none');
+    var ctx = document.getElementById("yearChart").getContext('2d');
+  
+    var original = Chart.defaults.global.legend.onClick;
+    Chart.defaults.global.legend.onClick = function(e, legendItem) {
+      update_caption(legendItem);
+      original.call(this, e, legendItem);
+    };
+    
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: (gon.month),
+        datasets: [{
+          label: '収入の年間レポート(1単位/1万円)',
+          backgroundColor: "rgb(255,228,181)",
+          data: [(gon.money_month_1), (gon.money_month_2), (gon.money_month_3), (gon.money_month_4), (gon.money_month_5), (gon.money_month_6), (gon.money_month_7), (gon.money_month_8), (gon.money_month_9), (gon.money_month_10), (gon.money_month_11), (gon.money_month_12)],
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          padding:3,
+          fontSize: 26
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            categoryPercentage:0.8
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              stepSize: 2
+            }
+          }]
+        },
+        legend: {
+          labels: {
+            boxWidth: 12,
+            padding: 20
+          },
+          display: true
+        },
+        tooltips:{
+          mode:'label'
+        }
+      }
+    });
+  });
+
+  $('.monthly-btn').click(function(){
+    $('#yearChart').css('display', 'none');
+    $('#monthlyChart').css('display', '');
+    $('#weeklyChart').css('display', 'none');
+    var ctx = document.getElementById("monthlyChart").getContext('2d');
+  
+    var original = Chart.defaults.global.legend.onClick;
+    Chart.defaults.global.legend.onClick = function(e, legendItem) {
+      update_caption(legendItem);
+      original.call(this, e, legendItem);
+    };
+    
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: (gon.month),
+        datasets: [{
+          label: '収入の月間レポート(1単位/1万円)',
+          backgroundColor: "rgb(255,228,181)",
+          data: [(gon.money_month_1), (gon.money_month_2), (gon.money_month_3), (gon.money_month_4), (gon.money_month_5), (gon.money_month_6), (gon.money_month_7), (gon.money_month_8), (gon.money_month_9), (gon.money_month_10), (gon.money_month_11), (gon.money_month_12)],
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          padding:3,
+          fontSize: 26
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            categoryPercentage:0.8
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              stepSize: 2
+            }
+          }]
+        },
+        legend: {
+          labels: {
+            boxWidth: 12,
+            padding: 20
+          },
+          display: true
+        },
+        tooltips:{
+          mode:'label'
+        }
+      }
+    });
+  });
+
+  $('.weekly-btn').click(function(){
+    $('#yearChart').css('display', 'none');
+    $('#monthlyChart').css('display', 'none');
+    $('#weeklyChart').css('display', '');
+    var ctx = document.getElementById("weeklyChart").getContext('2d');
+  
+    var original = Chart.defaults.global.legend.onClick;
+    Chart.defaults.global.legend.onClick = function(e, legendItem) {
+      update_caption(legendItem);
+      original.call(this, e, legendItem);
+    };
+    
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: (gon.month),
+        datasets: [{
+          label: '収入の週間レポート(1単位/1万円)',
+          backgroundColor: "rgb(255,228,181)",
+          data: [(gon.money_month_1), (gon.money_month_2), (gon.money_month_3), (gon.money_month_4), (gon.money_month_5), (gon.money_month_6), (gon.money_month_7), (gon.money_month_8), (gon.money_month_9), (gon.money_month_10), (gon.money_month_11), (gon.money_month_12)],
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          padding:3,
+          fontSize: 26
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            categoryPercentage:0.8
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              stepSize: 2
+            }
+          }]
+        },
+        legend: {
+          labels: {
+            boxWidth: 12,
+            padding: 20
+          },
+          display: true
+        },
+        tooltips:{
+          mode:'label'
+        }
+      }
+    });
+  });

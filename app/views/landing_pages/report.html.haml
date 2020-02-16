@@ -10,8 +10,18 @@
     -# ----------------------------
     = render 'layouts/side_bar'
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 集計
+      %h2 【集計レポート】
+      %p どの集計を見ますか？
       .col-12
+        .col-8
+          %button.btn.btn-warning{ style: 'padding: 15px; margin: 5px;' }
+            = link_to '収入', incomes_report_path
+        .col-8
+          %button.btn.btn-warning{ style: 'padding: 15px; margin: 5px;' }
+            = link_to '変動費', variable_costs_report_path
+        .col-8
+          %button.btn.btn-warning{ style: 'padding: 15px; margin: 5px;' }
+            = link_to '固定費', fixed_costs_report_path
 
 
 -# ----------------------------
