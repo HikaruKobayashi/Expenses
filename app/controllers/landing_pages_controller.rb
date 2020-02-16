@@ -5,6 +5,10 @@ class LandingPagesController < ApplicationController
     @variable_cost = VariableCost.all
     @fixed_cost = FixedCost.all
 
+    # 残高
+    balance = Income.sum(:money) - (VariableCost.sum(:money) + FixedCost.sum(:money))
+    gon.balances = "残高#{balance}円"
+
     # 集計値
     gon.income_sum = Income.sum(:money) / 10000
     gon.variable_cost_sum = VariableCost.sum(:money) / 10000
