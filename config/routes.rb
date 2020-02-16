@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/fixed_costs_report" => "fixed_costs#report"
 
   resources :save
-  get "/saves_report" => "saves#report"
+  get "/saves_report" => "save#report"
 
   get 'inquiry' => 'inquiry#index'
   post 'inquiry/confirm' => 'inquiry#confirm'
