@@ -32,6 +32,11 @@
   font-size: 25px;
 }
 
+/* Body */
+.enroll-in {
+  float: right;
+}
+
 /* footer */
 .footer {
   padding: 50px 0 20px 0;

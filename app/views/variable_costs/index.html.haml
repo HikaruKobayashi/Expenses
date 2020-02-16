@@ -12,7 +12,7 @@
 
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【変動費】
-      %button.btn.btn-warning
+      %button.btn.btn-warning.enroll-in
         %i.fa.fa-plus-circle
         = link_to '登録', new_variable_cost_path, class: 'menu-link'
       - if @variableCost.present?
