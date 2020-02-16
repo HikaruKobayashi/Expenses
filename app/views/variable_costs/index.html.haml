@@ -28,7 +28,6 @@
                 %th 商品名
                 %th 説明
                 %th 金額
-                %th 種類
                 %th
                 %th
             %tbody
@@ -39,10 +38,11 @@
                   %td= variableCost.content
                   %td= variableCost.money.to_i
                   %td
+                    %button.btn.btn-warning
+                      = link_to "編集", edit_variable_cost_path(variableCost), class: 'menu-link'
                   %td
-                    = link_to "編集", edit_variable_cost_path(variableCost)
-                  %td
-                    = link_to "削除", variableCost, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }
+                    %button.btn.btn-danger
+                      = link_to "削除", variableCost, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
       - else
         %a 登録されている収入はありません。
 

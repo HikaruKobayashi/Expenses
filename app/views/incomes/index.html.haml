@@ -40,9 +40,11 @@
                   %td= income.money.to_i
                   %td= income.label
                   %td
-                    = link_to "編集", edit_income_path(income)
+                    %button.btn.btn-warning
+                      = link_to "編集", edit_income_path(income), class: 'menu-link'
                   %td
-                    = link_to "削除", income, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }
+                    %button.btn.btn-danger
+                      = link_to "削除", income, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
       - else
         %a 登録されている収入はありません。
 
