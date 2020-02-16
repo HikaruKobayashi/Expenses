@@ -13,7 +13,8 @@
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【変動費】
       %button.btn.btn-warning
-        = link_to '登録', new_variable_cost_path	
+        %i.fa.fa-plus-circle
+        = link_to '登録', new_variable_cost_path, class: 'menu-link'
       - if @variableCost.present?
         .col-10
           %h2 現在の総変動費は#{VariableCost.sum(:money)}円です。

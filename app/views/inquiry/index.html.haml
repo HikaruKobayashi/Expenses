@@ -13,14 +13,13 @@
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【お問い合わせ】
       = form_for @inquiry, :url => inquiry_confirm_path do |f|
-        .wrapper.col-12{ style: 'width: 600px;' }
+        .col-12
           - if @inquiry.errors.any?
             %p 入力内容に誤りがあります。
             %ul
               = @inquiry.errors.each do |attr, msg|
                 %li
                   = msg
-
           %table.contact-form.col-6
             %tr
               %th 名前

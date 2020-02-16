@@ -13,7 +13,8 @@
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【収入】
       %button.btn.btn-warning
-        = link_to '登録', new_income_path
+        %i.fa.fa-plus-circle
+        = link_to '登録', new_income_path, class: 'menu-link'
       - if @income.present?
         .col-10
           %h2 現在の総収入は#{Income.sum(:money)}円です。

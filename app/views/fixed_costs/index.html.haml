@@ -13,7 +13,8 @@
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【固定費】
       %button.btn.btn-warning
-        = link_to '登録', new_fixed_cost_path	
+        %i.fa.fa-plus-circle
+        = link_to '登録', new_fixed_cost_path, class: 'menu-link'
       - if @fixedCost.present?
         .col-10
           %h2 現在の総変動費は#{FixedCost.sum(:money)}円です。
