@@ -10,8 +10,18 @@
     -# ----------------------------
     = render 'layouts/side_bar'
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 集計
+      %h2 【集計レポート】
       .col-12
+        %p 集計の種類を選択してください。
+        %button.btn.btn-info{ style: 'padding: 15px; margin: 5px;' }
+          %i.fa.fa-chart-line.menu-icon
+          = link_to '収入', incomes_report_path, class: 'menu-link'
+        %button.btn.btn-info{ style: 'padding: 15px; margin: 5px;' }
+          %i.fa.fa-chart-line.menu-icon
+          = link_to '変動費', variable_costs_report_path, class: 'menu-link'
+        %button.btn.btn-info{ style: 'padding: 15px; margin: 5px;' }
+          %i.fa.fa-chart-line.menu-icon
+          = link_to '固定費', fixed_costs_report_path, class: 'menu-link'
 
 
 -# ----------------------------

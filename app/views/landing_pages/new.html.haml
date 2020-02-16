@@ -1,0 +1,28 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %h2 【設定】
+      %p 年間貯金目標額を設定する。
+      .col-12
+        = form_for @landing_page do |f|
+          .form-group
+            = f.label :goal, '金額'
+            = f.number_field :goal, min: 0, max: 10000000
+          = f.submit '登録', class: 'btn btn-primary'
+          %button.btn.btn-warning
+            = link_to '編集', edit_landing_page_path(:id)
+          -# %button.btn.btn-danger
+          -#   = link_to 'キャンセル', root_path, class: 'cancel-btn'
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
