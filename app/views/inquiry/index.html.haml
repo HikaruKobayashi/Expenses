@@ -1,0 +1,39 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+
+    %div.col-8{ style: 'margin-left: 100px;'}
+      %h2 【お問い合わせ】
+      = form_for @inquiry, :url => inquiry_confirm_path do |f|
+        .col-12
+          - if @inquiry.errors.any?
+            %p 入力内容に誤りがあります。
+            %ul
+              = @inquiry.errors.each do |attr, msg|
+                %li
+                  = msg
+          %table.contact-form.col-6
+            %tr
+              %th 名前
+              %td= f.text_field :name
+            %tr
+              %th メールアドレス
+              %td= f.text_field :email
+            %tr
+              %th お問い合わせ内容
+              %td= f.text_field :message
+
+        = f.submit '確認', class: 'btn btn-primary submit-btn'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
