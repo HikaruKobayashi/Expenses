@@ -54,7 +54,7 @@ class SaveController < ApplicationController
   def destroy
     @save = Save.find(params[:id])
     @save.destroy
-    redirect_to :save
+    redirect_to root_path
   end
 
   def report
