@@ -4,7 +4,7 @@ class SaveCollection
   extend ActiveModel::Translation
   include ActiveModel::AttributeMethods
   include ActiveModel::Validations
-  SAVE_NUM = 2
+  SAVE_NUM = 1
   attr_accessor :collection
 
   def initialize(attributes = [])

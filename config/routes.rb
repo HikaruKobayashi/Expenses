@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get "/report" => "landing_pages#report"
 
   resources :incomes
-  get "/incomes/new" => "incomes#new"
   get "/incomes_report" => "incomes#report"
   resources :variable_costs
   get "/variable_costs_report" => "variable_costs#report"

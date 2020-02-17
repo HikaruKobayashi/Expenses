@@ -24,31 +24,50 @@ class IncomesController < ApplicationController
     @income = Income.find(params[:id])
   end
 
+  # エラー対応中
+  # def new
+  #   @income = IncomeCollection.new
+  # end
+
   def new
-    @income = IncomeCollection.new
+    @income = Income.new
   end
 
   def edit
     @income = Income.find(params[:id])
   end
 
+  # エラー対応中
+  # def create
+  #   @income = IncomeCollection.new(incomes_params)
+  #   if @income.save
+  #     redirect_to ('/')
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def create
-    @income = IncomeCollection.new(incomes_params)
-    if @income.save
-      redirect_to ('/')
-    else
-      render :new
-    end
+    @income = Income.create(income_params)
+    @income.save!
+    redirect_to('/')
   end
+
+  # エラー対応中
+  # def update
+  #   @income = Income.find(params[:id])
+  #   @income.assign_attributes(income_params)
+  #   if @income.save
+  #     redirect_to ('/')
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def update
     @income = Income.find(params[:id])
-    @income.assign_attributes(income_params)
-    if @income.save
-      redirect_to ('/')
-    else
-      render :new
-    end
+    @income.update(income_params)
+    redirect_to('/')
   end
 
   def destroy
@@ -95,7 +114,7 @@ class IncomesController < ApplicationController
   private
 
   def income_params
-    params.require(:income).permit(:name, :content, :money, :label)
+    params.require(:income).permit(:name, :content, :money)
   end
   # 一括専用
   def incomes_params

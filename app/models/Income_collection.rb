@@ -4,7 +4,7 @@ class IncomeCollection
   extend ActiveModel::Translation
   include ActiveModel::AttributeMethods
   include ActiveModel::Validations
-  INCOME_NUM = 3
+  INCOME_NUM = 1
   attr_accessor :collection
 
   def initialize(attributes = [])
@@ -13,8 +13,7 @@ class IncomeCollection
         Income.new(
           name: value['name'],
           content: value['content'],
-          money: value['money'],
-          label: value['label']
+          money: value['money']
         )
       end
     else

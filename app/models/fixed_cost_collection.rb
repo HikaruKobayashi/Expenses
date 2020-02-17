@@ -4,7 +4,7 @@ class FixedCostCollection
   extend ActiveModel::Translation
   include ActiveModel::AttributeMethods
   include ActiveModel::Validations
-  FIXED_COST_NUM = 3
+  FIXED_COST_NUM = 1
   attr_accessor :collection
 
   def initialize(attributes = [])
