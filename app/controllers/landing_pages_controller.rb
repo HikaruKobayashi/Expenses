@@ -18,7 +18,7 @@ class LandingPagesController < ApplicationController
     # 目標貯金額の達成理率を計算
     gon.goal_value_sum = LandingPage.sum(:goal) / 10000   
     goal_value = Save.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
-    gon.goal = "#{goal_value.floor(0)}%"
+    gon.goal = "#{goal_value.floor(1).to_f}%"
   end
 
   def new
