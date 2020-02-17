@@ -11,13 +11,16 @@
     = render 'layouts/side_bar'
     %div.col-8{ style: 'margin-left: 100px;'}
       %h2 【収入集計レポート】
-      %p 期間を選択してください。
-      %button.btn.btn-warning.year-btn 年間レポート
-      %button.btn.btn-warning.monthly-btn 月間レポート
-      %button.btn.btn-warning.weekly-btn 週間レポート
-      %canvas#yearChart{ style: 'display: none;' }
-      %canvas#monthlyChart{ style: 'display: none;' }
-      %canvas#weeklyChart{ style: 'display: none;' }
+      - if @income.present?
+        %p 期間を選択してください。
+        %button.btn.btn-warning.year-btn 年間レポート
+        %button.btn.btn-warning.monthly-btn 月間レポート
+        %button.btn.btn-warning.weekly-btn 週間レポート
+        %canvas#yearChart{ style: 'display: none;' }
+        %canvas#monthlyChart{ style: 'display: none;' }
+        %canvas#weeklyChart{ style: 'display: none;' }
+      - else
+        %p 収入が登録されていません。
 
 -# ----------------------------
 -# footer
