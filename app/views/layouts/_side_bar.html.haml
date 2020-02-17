@@ -13,6 +13,11 @@
     %ul.nav.flex-colum.nav.nav-sidebar{ style: 'margin-left: 40px;' }
       %li.nav-item
         %button.btn.btn-warning.side-btn
+          %i.fa.fa-hand-holding-usd.menu-icon
+          = link_to '貯金', save_index_path, class: 'nav-link menu-link'
+    %ul.nav.flex-colum.nav.nav-sidebar{ style: 'margin-left: 40px;' }
+      %li.nav-item
+        %button.btn.btn-warning.side-btn
           %i.fa.fa-comment-dollar.menu-icon
           = link_to '変動費', variable_costs_path, class: 'nav-link menu-link'
     %ul.nav.flex-colum.nav.nav-sidebar{ style: 'margin-left: 40px;' }

@@ -11,13 +11,13 @@
     = render 'layouts/side_bar'
 
     %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 【収入】
+      %h2 【貯金】
       %button.btn.btn-warning.enroll-in
         %i.fa.fa-plus-circle
-        = link_to '登録', new_income_path, class: 'menu-link'
-      - if @income.present?
+        = link_to '登録', new_save_path, class: 'menu-link'
+      - if @save.present?
         .col-10
-          %h2 現在の総収入は#{Income.sum(:money)}円です。
+          %h2 現在の貯金額は#{Save.sum(:money)}円です。
         %h2 月間レポート
         %canvas#myChart.col-12
         .col-12
@@ -25,34 +25,32 @@
             %thead
               %tr
                 %th 日付
-                %th 収入源
                 %th 説明
                 %th 金額
-                -# %th 種類
+                %th
                 %th
                 %th
             %tbody
-              - @income.each do |income|
+              - @save.each do |save|
                 %tr
-                  %td= income.created_at.strftime('%Y/%m/%d %H:%M')
-                  %td= income.name
-                  %td= income.content
-                  %td= income.money.to_i
-                  -# %td= income.label
+                  %td= save.created_at.strftime('%Y/%m/%d %H:%M')
+                  %td= save.name
+                  %td= save.content
+                  %td= save.money.to_i
                   %td
                     %button.btn.btn-warning
-                      = link_to "編集", edit_income_path(income), class: 'menu-link'
+                      = link_to "編集", edit_save_path(save), class: 'menu-link'
                   %td
-                    %button.btn.btn-danger
-                      = link_to "削除", income, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
+                    = link_to "/save/#{save.id}/destroy", {method: "save"} do
+                      %button.btn.btn-danger 削除
       - else
-        %a 登録されている収入はありません。
+        %a 登録されている貯金はありません。
 
 -# ----------------------------
 -# footer
 -# ----------------------------
 = render 'layouts/footer'
-
+  
 :javascript
   document.addEventListener("turbolinks:load", function(){
     var ctx = document.getElementById("myChart").getContext('2d');

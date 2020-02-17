@@ -11,13 +11,14 @@ class LandingPagesController < ApplicationController
 
     # 集計値
     gon.income_sum = Income.sum(:money) / 10000
+    gon.save_sum = Save.sum(:money) / 10000
     gon.variable_cost_sum = VariableCost.sum(:money) / 10000
     gon.fixed_cost_sum = FixedCost.sum(:money) / 10000
 
-    # 目標貯金額の達成理率を計算 TO DO 良い書き方がないものだろいうか...
-    gon.goal_value_sum = LandingPage.sum(:goal) / 10000    
-    gon.goal_value = Income.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
-    gon.goal = "#{gon.goal_value.floor}%"
+    # 目標貯金額の達成理率を計算
+    gon.goal_value_sum = LandingPage.sum(:goal) / 10000   
+    goal_value = Save.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
+    gon.goal = "#{goal_value.floor}%"
   end
 
   def new
