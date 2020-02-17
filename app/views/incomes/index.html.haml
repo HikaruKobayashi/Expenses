@@ -18,7 +18,8 @@
       - if @income.present?
         .col-10
           %h2 現在の総収入は#{Income.sum(:money)}円です。
-        %canvas#myChart.col-12
+        .chart-container.col-12
+          %canvas#myChart.col-12{ style: 'position: relative; width:100vw; height:50vh' }
         .col-12
           %table.table.table-striped.table-bordered
             %thead
@@ -99,7 +100,8 @@
         },
         tooltips:{
           mode:'label'
-        }
+        },
+        maintainAspectRatio: false,
       }
     });
   });

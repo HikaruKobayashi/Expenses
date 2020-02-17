@@ -21,8 +21,10 @@
         %button.btn.btn-warning#button-1 総額
         %button.btn.btn-warning#button-2 目標貯蓄額達成率
         %p <1単位 = 10,000円>
-        %canvas#myChart.col-12
-        %canvas#Chart.col-12{ style: 'display: none;' }
+        .chart-container.col-12
+          %canvas#myChart.col-12{ style: 'position: relative; width:75vw; height:45vh' }
+        .chart-container
+          %canvas#Chart.col-12{ style: 'display: none; position: relative; width:75vw; height:45vh' }
     - else
       %h3 データがありません。
       %h3 ← メニューから登録してみよう！
@@ -125,7 +127,8 @@
           fontStyle: 'Arial', // Default is Arial
           sidePadding: 20 // Defualt is 20 (as a percentage)
         }
-      }
+      },
+      maintainAspectRatio: false,
     }
   };
   var ctx = document.getElementById("myChart").getContext("2d");
@@ -196,7 +199,8 @@
             color: '#FF6384', // Default is #000000
             fontStyle: 'Arial', // Default is Arial
             sidePadding: 20 // Defualt is 20 (as a percentage)
-          }
+          },
+          maintainAspectRatio: false,
         }
       }
     };
