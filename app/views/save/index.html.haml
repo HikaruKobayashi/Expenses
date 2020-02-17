@@ -29,6 +29,7 @@
                 %th 金額
                 %th
                 %th
+                %th
             %tbody
               - @save.each do |save|
                 %tr
@@ -39,9 +40,9 @@
                   %td
                     %button.btn.btn-warning
                       = link_to "編集", edit_save_path(save), class: 'menu-link'
-                  -# %td
-                  -#   %button.btn.btn-danger
-                  -#     = link_to "削除", save, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
+                  %td
+                    = link_to "/save/#{save.id}/destroy", {method: "save"} do
+                      %button.btn.btn-danger 削除
       - else
         %a 登録されている貯金はありません。
 
