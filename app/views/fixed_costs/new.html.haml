@@ -10,8 +10,8 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 固定費登録
+    %div.col-8{ style: 'margin-left: 30px;'}
+      %h2 【固定費登録】
       .col-12
         = form_with model: @fixedCost, url: fixed_costs_path, local: true do |form|
           - @fixedCost.collection.each do |fixed_cost|

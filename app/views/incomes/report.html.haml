@@ -9,16 +9,19 @@
     -# sidebar
     -# ----------------------------
     = render 'layouts/side_bar'
-    %div.col-8{ style: 'margin-left: 100px;'}
+    %div.col-8{ style: 'margin-left: 30px;'}
       %h2 【収入集計レポート】
       - if @income.present?
         %p 期間を選択してください。
         %button.btn.btn-warning.year-btn 年間レポート
         %button.btn.btn-warning.monthly-btn 月間レポート
         %button.btn.btn-warning.weekly-btn 週間レポート
-        %canvas#yearChart{ style: 'display: none;' }
-        %canvas#monthlyChart{ style: 'display: none;' }
-        %canvas#weeklyChart{ style: 'display: none;' }
+        .chart-container.col-12
+          %canvas#yearChart{ style: 'display: none; position: relative; width:100vw; height:50vh' }
+        .chart-container.col-12
+          %canvas#monthlyChart{ style: 'display: none; position: relative; width:100vw; height:50vh' }
+        .chart-container.col-12
+          %canvas#weeklyChart{ style: 'display: none; position: relative; width:100vw; height:50vh' }
       - else
         %p 収入が登録されていません。
 
@@ -77,7 +80,8 @@
         },
         tooltips:{
           mode:'label'
-        }
+        },
+        maintainAspectRatio: false,
       }
     });
   });
@@ -131,7 +135,8 @@
         },
         tooltips:{
           mode:'label'
-        }
+        },
+        maintainAspectRatio: false,
       }
     });
   });
@@ -185,7 +190,8 @@
         },
         tooltips:{
           mode:'label'
-        }
+        },
+        maintainAspectRatio: false,
       }
     });
   });

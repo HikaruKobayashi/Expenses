@@ -12,19 +12,19 @@
     = render 'layouts/side_bar'
 
     - if @income.present? || @variable_cost.present? || @fixed_cost.present?
-      %div.col-8{ style: 'margin-left: 100px;'}
-        %h2 【ホーム】
+      %div.col-8{ style: 'margin-left: 30px;'}
+        %h2 【経済状況】
         .col-12
-          %h2 経済状況
-          %h4 - 現在の総収入は#{Income.sum(:money)}円です。
-          %h4 - 現在の総変動費は#{VariableCost.sum(:money)}円です。
-          %h4 - 現在の総固定費は#{FixedCost.sum(:money)}円です。
-          %h4 - 目標貯金額は#{LandingPage.sum(:goal)}円です。
-        %p <1単位 = 10,000円>
+          %h4 - 現在の総収入: #{Income.sum(:money)}円
+          %h4 - 現在の総変動費: #{VariableCost.sum(:money)}円
+          %h4 - 現在の総固定費: #{FixedCost.sum(:money)}円
         %button.btn.btn-warning#button-1 総額
         %button.btn.btn-warning#button-2 目標貯蓄額達成率
-        %canvas#myChart.col-12
-        %canvas#Chart.col-12{ style: 'display: none;' }
+        %p <1単位 = 10,000円>
+        .chart-container.col-12
+          %canvas#myChart.col-12{ style: 'position: relative; width:75vw; height:45vh' }
+        .chart-container
+          %canvas#Chart.col-12{ style: 'display: none; position: relative; width:75vw; height:45vh' }
     - else
       %h3 データがありません。
       %h3 ← メニューから登録してみよう！
@@ -127,7 +127,8 @@
           fontStyle: 'Arial', // Default is Arial
           sidePadding: 20 // Defualt is 20 (as a percentage)
         }
-      }
+      },
+      maintainAspectRatio: false,
     }
   };
   var ctx = document.getElementById("myChart").getContext("2d");
@@ -198,7 +199,8 @@
             color: '#FF6384', // Default is #000000
             fontStyle: 'Arial', // Default is Arial
             sidePadding: 20 // Defualt is 20 (as a percentage)
-          }
+          },
+          maintainAspectRatio: false,
         }
       }
     };

@@ -10,7 +10,7 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
+    %div.col-8{ style: 'margin-left: 30px;'}
       %h2 【貯金】
       %button.btn.btn-warning.enroll-in
         %i.fa.fa-plus-circle
@@ -18,9 +18,8 @@
       - if @save.present?
         .col-10
           %h2 現在の貯金額は#{Save.sum(:money)}円です。
-        %h2 月間レポート
-        %canvas#myChart.col-12
-        .col-12
+          .chart-container.col-12
+            %canvas#myChart.col-12{ style: 'position: relative; width:100vw; height:50vh' }        .col-12
           %table.table.table-striped.table-bordered
             %thead
               %tr
@@ -98,7 +97,8 @@
         },
         tooltips:{
           mode:'label'
-        }
+        },
+        maintainAspectRatio: false,
       }
     });
   });

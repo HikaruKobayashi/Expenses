@@ -10,7 +10,7 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
+    %div.col-8{ style: 'margin-left: 30px;'}
       %h2 【お問い合わせ】
       = form_for @inquiry, :url => inquiry_confirm_path do |f|
         .col-12
@@ -20,7 +20,7 @@
               = @inquiry.errors.each do |attr, msg|
                 %li
                   = msg
-          %table.contact-form.col-6
+          %table.contact-form.col-12
             %tr
               %th 名前
               %td= f.text_field :name
@@ -29,7 +29,7 @@
               %td= f.text_field :email
             %tr
               %th お問い合わせ内容
-              %td= f.text_field :message
+              %td= f.text_area :message, rows: 5
 
         = f.submit '確認', class: 'btn btn-primary submit-btn'
 

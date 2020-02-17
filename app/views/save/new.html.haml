@@ -10,8 +10,8 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 貯金登録
+    %div.col-8{ style: 'margin-left: 30px;'}
+      %h2 【貯金登録】
       .col-12
         = form_with model: @save, url: save_index_path, local: true do |form|
           - @save.collection.each do |save|
