@@ -52,7 +52,7 @@ class SaveController < ApplicationController
   end
 
   def destroy
-    @save = Save.find_by(id: params[:id])
+    @save = Save.find(params[:id])
     @save.destroy
     redirect_to :save
   end
@@ -95,7 +95,7 @@ class SaveController < ApplicationController
   private
 
   def save_params
-    params.require(:save).permit(:name, :money)
+    params.require(:save).permit(:name, :content, :money)
   end
   # 一括専用
   def saves_params

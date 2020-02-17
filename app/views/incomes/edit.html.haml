@@ -23,11 +23,10 @@
           .form-group
             = f.label :money, '金額'
             = f.number_field :money, min: 0, max: 10000000
-          .form-group
-            %p 種類
-            = f.select :label, [['貯蓄', 'savings'], ['給与等', 'supply']]
 
-          = f.submit '登録'
+          = f.submit '登録', class: 'btn btn-primary'
+          %button.btn.btn-danger
+            = link_to 'キャンセル', root_path, class: 'cancel-btn'
 
 -# ----------------------------
 -# footer

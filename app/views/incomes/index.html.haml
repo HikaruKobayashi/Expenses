@@ -28,7 +28,6 @@
                 %th 収入源
                 %th 説明
                 %th 金額
-                -# %th 種類
                 %th
                 %th
             %tbody
@@ -38,13 +37,12 @@
                   %td= income.name
                   %td= income.content
                   %td= income.money.to_i
-                  -# %td= income.label
                   %td
                     %button.btn.btn-warning
                       = link_to "編集", edit_income_path(income), class: 'menu-link'
                   %td
                     %button.btn.btn-danger
-                      = link_to "削除", income, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
+                      = link_to "削除", income, method: :delete, data: { confirm: 'この操作を取り戻すことはできません。本当に削除しますか？' }, class: 'menu-link'
       - else
         %a 登録されている収入はありません。
 

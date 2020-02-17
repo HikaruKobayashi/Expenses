@@ -4,7 +4,7 @@ class VariableCostCollection
   extend ActiveModel::Translation
   include ActiveModel::AttributeMethods
   include ActiveModel::Validations
-  VARIABLE_COST_NUM = 3
+  VARIABLE_COST_NUM = 1
   attr_accessor :collection
 
   def initialize(attributes = [])
