@@ -10,8 +10,8 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 変動費登録
+    %div.col-8{ style: 'margin-left: 30px;'}
+      %h2 【変動費登録】
       .col-12
         = form_with model: @variableCost, url: variable_costs_path, local: true do |form|
           - @variableCost.collection.each do |variable_cost|

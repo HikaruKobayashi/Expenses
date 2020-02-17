@@ -12,17 +12,15 @@
     = render 'layouts/side_bar'
 
     - if @income.present? || @variable_cost.present? || @fixed_cost.present?
-      %div.col-8{ style: 'margin-left: 100px;'}
-        %h2 【ホーム】
+      %div.col-8{ style: 'margin-left: 30px;'}
+        %h2 【経済状況】
         .col-12
-          %h2 経済状況
-          %h4 - 現在の総収入は#{Income.sum(:money)}円です。
-          %h4 - 現在の総変動費は#{VariableCost.sum(:money)}円です。
-          %h4 - 現在の総固定費は#{FixedCost.sum(:money)}円です。
-          %h4 - 目標貯金額は#{LandingPage.sum(:goal)}円です。
-        %p <1単位 = 10,000円>
+          %h4 - 現在の総収入: #{Income.sum(:money)}円
+          %h4 - 現在の総変動費: #{VariableCost.sum(:money)}円
+          %h4 - 現在の総固定費: #{FixedCost.sum(:money)}円
         %button.btn.btn-warning#button-1 総額
         %button.btn.btn-warning#button-2 目標貯蓄額達成率
+        %p <1単位 = 10,000円>
         %canvas#myChart.col-12
         %canvas#Chart.col-12{ style: 'display: none;' }
     - else

@@ -10,8 +10,8 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
-      %h2 収入登録
+    %div.col-8{ style: 'margin-left: 30px;'}
+      %h2 【収入登録】
       .col-12
         = form_with model: @income, url: incomes_path, local: true do |form|
           - @income.collection.each do |income|

@@ -10,7 +10,7 @@
     -# ----------------------------
     = render 'layouts/side_bar'
 
-    %div.col-8{ style: 'margin-left: 100px;'}
+    %div.col-8{ style: 'margin-left: 30px;'}
       %h2 【固定費】
       %button.btn.btn-warning.enroll-in
         %i.fa.fa-plus-circle
@@ -18,7 +18,6 @@
       - if @fixedCost.present?
         .col-10
           %h2 現在の総変動費は#{FixedCost.sum(:money)}円です。
-        %h2 月間レポート
         %canvas#myChart.col-12
         .col-12
           %table.table.table-striped.table-bordered
