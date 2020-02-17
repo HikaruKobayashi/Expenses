@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   get 'inquiry' => 'inquiry#index'
   post 'inquiry/confirm' => 'inquiry#confirm'
   post 'inquiry/thanks' => 'inquiry#thanks'
+
+  # ルーティングエラー時の処理
+  get "*path" => 'landing_pages#index'
 end
