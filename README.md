@@ -19,14 +19,22 @@ https://money-hub-sample.herokuapp.com/
 
 ## 動作方法
 1.アプリを作成したいディレクトリに移動する。ex) `cd desktop`  
+<br>
 2.$`git clone https://github.com/HikaruKobayashi/MoneyHub.git`を実行する。  
+<br>
 3.$`cd MoneyHub`でMoneyHubディレクトリに移動する。  
+<br>
 4.$`docker-compose up -d`でアプリを起動する。  
+<br>
 5.$`docker ps -a`で起動しているコンテナのidを取得する。  
+<br>
 6.$`docker exec -it コンテナid bash`でコンテナの中に入る。  
+<br>
 7.#`rake db:create`でDBを作成する。  
-8.#`rails db:migrate`でマイグレーションする。  
-→ http://localhost:3000/ を起動してMoneyHubが表示されていることを確認する。  
+<br>
+8.#`rails db:migrate`でマイグレーションする。
+<br>
+→ http://localhost:3000/ を起動してMoneyHubが表示されていることを確認する。 
 
 ## 開発に使用した技術
 - Docker
