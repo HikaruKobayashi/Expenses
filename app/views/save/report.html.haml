@@ -46,11 +46,11 @@
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: (gon.year),
+        labels: (gon.recently_year),
         datasets: [{
           label: '貯金額の年間レポート(1単位/1万円)',
           backgroundColor: "rgb(255,228,181)",
-          data: [(gon.money_year_3), (gon.money_year_2), (gon.money_year_1)],
+          data: (gon.money_year),
         }]
       },
       options: {
@@ -105,7 +105,7 @@
         datasets: [{
           label: '貯金額の月間レポート(1単位/1万円)',
           backgroundColor: "rgb(255,228,181)",
-          data: [(gon.money_month_1), (gon.money_month_2), (gon.money_month_3), (gon.money_month_4), (gon.money_month_5), (gon.money_month_6), (gon.money_month_7), (gon.money_month_8), (gon.money_month_9), (gon.money_month_10), (gon.money_month_11), (gon.money_month_12)],
+          data: (gon.money_month),
         }]
       },
       options: {
@@ -160,7 +160,7 @@
         datasets: [{
           label: '貯金額の週間レポート(1単位/1万円)',
           backgroundColor: "rgb(255,228,181)",
-          data: [(gon.money_month_7), (gon.money_6), (gon.money_5), (gon.money_4), (gon.money_3), (gon.money_2), (gon.money_1)],
+          data: (gon.money_week),
         }]
       },
       options: {

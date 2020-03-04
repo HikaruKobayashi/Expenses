@@ -3,21 +3,20 @@ class SaveController < ApplicationController
     @save = Save.all
     # 総貯金
     gon.money_sum = Save.sum(:money)
-    # 月毎の総貯金 単位1万 TO DO DRY原則に反してる感がすごい
-    gon.money_month_1 = Save.where(created_at: "2020-01-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_2 = Save.where(created_at: "2020-02-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_3 = Save.where(created_at: "2020-03-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_4 = Save.where(created_at: "2020-04-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_5 = Save.where(created_at: "2020-05-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_6 = Save.where(created_at: "2020-06-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_7 = Save.where(created_at: "2020-07-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_8 = Save.where(created_at: "2020-08-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_9 = Save.where(created_at: "2020-09-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_10 = Save.where(created_at: "2020-10-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_11 = Save.where(created_at: "2020-11-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_12 = Save.where(created_at: "2020-12-01".in_time_zone.all_month).sum(:money) / 10000
-    # 1月から12月
-    gon.month = ["1月", "2月", "3月", "4月", "5月", "6月","7月", "8月", "9月", "10月", "11月", "12月"]
+
+    # 今日を取得する
+    t = Time.now
+
+    # 今年の1月1日を取得する
+    the_beginning = t.beginning_of_year
+
+    # 月毎の貯金 単位1万円
+    gon.money_month = []
+    gon.month = []
+    12.times do |m|
+      gon.money_month.push(Save.where(created_at: ("#{the_beginning.since(m.month)}").in_time_zone.all_month).sum(:money) / 10000)
+      gon.month.push("#{m+1}月")
+    end
   end
 
   def show
@@ -61,35 +60,39 @@ class SaveController < ApplicationController
     @save = Save.all
     # 総収入
     gon.money_sum = Save.sum(:money)
-    # 年毎の総収入 単位1万円 TO DO DRY原則に反してる感がすごい
-    gon.money_year_1 = Save.where(created_at: "2020-01-01".in_time_zone.all_year).sum(:money) / 10000
-    gon.money_year_2 = Save.where(created_at: "2019-01-01".in_time_zone.all_year).sum(:money) / 10000
-    gon.money_year_3 = Save.where(created_at: "2018-01-01".in_time_zone.all_year).sum(:money) / 10000
-    # 月毎の総収入 単位1万円 TO DO DRY原則に反してる感がすごい
-    gon.money_month_1 = Save.where(created_at: "2020-01-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_2 = Save.where(created_at: "2020-02-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_3 = Save.where(created_at: "2020-03-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_4 = Save.where(created_at: "2020-04-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_5 = Save.where(created_at: "2020-05-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_6 = Save.where(created_at: "2020-06-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_7 = Save.where(created_at: "2020-07-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_8 = Save.where(created_at: "2020-08-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_9 = Save.where(created_at: "2020-09-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_10 = Save.where(created_at: "2020-10-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_11 = Save.where(created_at: "2020-11-01".in_time_zone.all_month).sum(:money) / 10000
-    gon.money_month_12 = Save.where(created_at: "2020-12-01".in_time_zone.all_month).sum(:money) / 10000
-    # 週間レポート 単位1万円 TO DO DRY原則に反してる感がすごい
-    gon.money_7 = Save.where(created_at: 6.day.ago.all_day).sum(:money) / 10000
-    gon.money_6 = Save.where(created_at: 5.day.ago.all_day).sum(:money) / 10000
-    gon.money_5 = Save.where(created_at: 4.day.ago.all_day).sum(:money) / 10000
-    gon.money_4 = Save.where(created_at: 3.day.ago.all_day).sum(:money) / 10000
-    gon.money_3 = Save.where(created_at: 2.day.ago.all_day).sum(:money) / 10000
-    gon.money_2 = Save.where(created_at: 1.day.ago.all_day).sum(:money) / 10000
-    gon.money_1 = Save.where(created_at: Time.zone.now.all_day).sum(:money) / 10000
-    # ラベル
-    gon.year = ["2018年", "2019年", "2020年"]
-    gon.month = ["1月", "2月", "3月", "4月", "5月", "6月","7月", "8月", "9月", "10月", "11月", "12月"]
-    gon.week = ["7日前", "6日前", "5日前", "4日前", "3日前", "昨日", "今日"]
+
+    # 今日を取得する
+    t = Time.now
+
+    # 今年の1月1日を取得する
+    the_beginning = t.beginning_of_year
+
+    # 年毎の貯金 単位1万円
+    this_year = t.year
+    my_year = []
+    year = []
+    3.times do |y|
+      my_year.push(Save.where(created_at: ("#{the_beginning.ago(y.years)}").in_time_zone.all_year).sum(:money) / 10000)
+      year.push("#{this_year-y}")
+    end
+    gon.money_year = my_year.reverse!
+    gon.recently_year = year.reverse!
+
+    # 月毎の貯金 単位1万円
+    gon.money_month = []
+    gon.month = []
+    12.times do |m|
+      gon.money_month.push(Save.where(created_at: ("#{the_beginning.since(m.month)}").in_time_zone.all_month).sum(:money) / 10000)
+      gon.month.push("#{m+1}月")
+    end
+
+    # 今日から数えて7日間
+    my_week = []
+    gon.week = ["6日前", "5日前", "4日前", "3日前", "2日前", "昨日", "今日"]
+    7.times do |w|
+      my_week.push(Save.where(created_at: ("#{t.ago(w.days)}").in_time_zone.all_day).sum(:money) / 10000)
+    end
+    gon.money_week = my_week.reverse!
   end
 
   private
