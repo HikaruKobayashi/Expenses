@@ -19,29 +19,30 @@
         .col-10
           %h2 現在の総変動費は#{FixedCost.sum(:money)}円です。
           .chart-container.col-12
-            %canvas#myChart.col-12{ style: 'position: relative; width:100vw; height:50vh' }        .col-12
-          %table.table.table-striped.table-bordered
-            %thead
-              %tr
-                %th 日付
-                %th 商品名
-                %th 説明
-                %th 金額
-                %th
-                %th
-            %tbody
-              - @fixedCost.each do |fixedCost|
+            %canvas#myChart.col-12{ style: 'position: relative; width:100vw; height:50vh' }
+          .col-12
+            %table.table.table-striped.table-bordered
+              %thead
                 %tr
-                  %th= fixedCost.created_at.strftime('%Y/%m/%d %H:%M')
-                  %th= fixedCost.name
-                  %th= fixedCost.content
-                  %th= fixedCost.money.to_i
-                  %td
-                    %button.btn.btn-warning
-                      = link_to "編集", edit_fixed_cost_path(fixedCost), class: 'menu-link'
-                  %td
-                    %button.btn.btn-danger
-                      = link_to "削除", fixedCost, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
+                  %th 日付
+                  %th 商品名
+                  %th 説明
+                  %th 金額
+                  %th
+                  %th
+              %tbody
+                - @fixedCost.each do |fixedCost|
+                  %tr
+                    %th= fixedCost.created_at.strftime('%Y/%m/%d %H:%M')
+                    %th= fixedCost.name
+                    %th= fixedCost.content
+                    %th= fixedCost.money.to_i
+                    %td
+                      %button.btn.btn-warning
+                        = link_to "編集", edit_fixed_cost_path(fixedCost), class: 'menu-link'
+                    %td
+                      %button.btn.btn-danger
+                        = link_to "削除", fixedCost, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }, class: 'menu-link'
       - else
         %a 登録されている収入はありません。
 
@@ -67,7 +68,7 @@
         datasets: [{
           label: '月毎の固定費(1単位/1万円)',
           backgroundColor: "rgb(255,228,181)",
-          data: [(gon.money_month_1), (gon.money_month_2), (gon.money_month_3), (gon.money_month_4), (gon.money_month_5), (gon.money_month_6), (gon.money_month_7), (gon.money_month_8), (gon.money_month_9), (gon.money_month_10), (gon.money_month_11), (gon.money_month_12)],
+          data: (gon.money_month),
         }]
       },
       options: {
