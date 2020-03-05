@@ -1,4 +1,6 @@
 class IncomesController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
     @income = Income.all
     # 総収入

@@ -1,4 +1,6 @@
 class VariableCostsController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
     # @variableCost = VariableCost.order(created_at: :desc)
     @variableCost = VariableCost.all

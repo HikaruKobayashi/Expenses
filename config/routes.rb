@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   post '/inquiry/confirm' => 'inquiry#confirm'
   post '/inquiry/thanks' => 'inquiry#thanks'
 
+  get '/login' => 'sessions#new'
+  post '/login'=> 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
+
   # ルーティングエラー時の処理
   get "*path" => 'landing_pages#index'
 end

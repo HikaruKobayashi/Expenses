@@ -16,5 +16,8 @@
           %a{:href => fixed_costs_path}
             %i.fa.fa-comment-dollar.menu-icon
             固定費
+          - if logged_in?
+            %button.btn.btn-warning{type: 'button'}
+              = link_to 'ログアウト', logout_path, method: :delete, class: 'log-in-btn'
     %hr/
     .row.text-center © 2020. Made by Hikaru.

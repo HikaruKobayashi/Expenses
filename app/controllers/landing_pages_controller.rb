@@ -1,4 +1,6 @@
 class LandingPagesController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
     @landing_page = LandingPage.all
     @income = Income.all
