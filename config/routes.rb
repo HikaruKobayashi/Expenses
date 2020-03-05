@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   post '/login'=> 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/users' => 'users#new'
+  post '/users'=> 'users#create'
+  delete '/users' => 'users#destroy'
+
   # ルーティングエラー時の処理
   get "*path" => 'landing_pages#index'
 end

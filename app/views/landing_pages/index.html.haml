@@ -64,6 +64,8 @@
             = f.password_field :password, class: 'font-control'
 
           =f.submit 'Log in', class: 'btn btn-warning', style: 'color: rgb(255, 255, 255);'
+          %button.btn.btn-primary
+            = link_to '新規登録', users_path, class: 'menu-link'
 
 
 

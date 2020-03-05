@@ -1,0 +1,28 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+.container
+  .row
+    .login.col-md-4.col-md-offset-4
+      = form_with scope: @user, url: users_path, local: true do |f|
+        %h2 【新規登録】
+        %div
+          .form-group
+            = f.label :name, 'ユーザー名'
+            = f.text_field :name, class: 'form-control'
+            %small#poster-tip.form-text.text-muted
+              名前を入力してください。
+          .form-group
+            = f.label :email, 'メールアドレス'
+            = f.text_field :email, class: 'form-control'
+          .form-group
+            %td= f.password_field  :password, id: :user_password, class: 'form_txt', placeholder: 'パスワード'
+            %td= f.password_field :password_confirmation, id: :user_password_confirmation, class: 'form_txt', placeholder: 'パスワード（確認用）'
+
+          = f.submit '登録', class: 'btn btn-info submit-btn'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
