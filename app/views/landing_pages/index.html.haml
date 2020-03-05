@@ -59,6 +59,7 @@
 = render 'layouts/footer'
 
 :javascript
+  alert(gon.upper_limit_money);
   Chart.pluginService.register({
     beforeDraw: function (chart) {
       if (chart.config.options.elements.center) {

@@ -19,6 +19,14 @@ class LandingPagesController < ApplicationController
     gon.goal_value_sum = LandingPage.sum(:goal) / 10000   
     goal_value = Save.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
     gon.goal = "#{goal_value.floor(1).to_f}%"
+
+    # 今日の日付を取得する
+    d1 = Date.today
+    # 給料日を設定する  TO DO どうやったらいいいのかわからない。 
+    d2 = Date.new(2020, 2, 15)
+    remaining_day = (d1 - d2).to_i
+    # 残高を残りの日数で割る。
+    gon.upper_limit_money　= (Income.sum(:money) - (VariableCost.sum(:money) + FixedCost.sum(:money))) / remaining_day
   end
 
   def new
@@ -56,6 +64,6 @@ class LandingPagesController < ApplicationController
   private
 
   def landing_page_params
-    params.require(:landing_page).permit(:goal)
+    params.require(:landing_page).permit(:goal, :pay_day)
   end
 end
