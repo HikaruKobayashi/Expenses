@@ -2,7 +2,7 @@ class IncomesController < ApplicationController
   before_action :logged_in_user, only:[:edit, :update, :destroy]
 
   def index
-    @income = Income.all
+    @income = current_user.incomes.all
     # 総収入
     gon.money_sum = Income.sum(:money)
 
@@ -22,7 +22,7 @@ class IncomesController < ApplicationController
   end
 
   def show
-    @income = Income.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
   end
 
   # エラー対応中
@@ -35,7 +35,7 @@ class IncomesController < ApplicationController
   end
 
   def edit
-    @income = Income.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
   end
 
   # エラー対応中
@@ -49,7 +49,8 @@ class IncomesController < ApplicationController
   # end
 
   def create
-    @income = Income.create(income_params)
+    @income = Income.new(income_params)
+    @income.user_id = current_user.id
     @income.save!
     redirect_to('/')
   end
@@ -66,13 +67,13 @@ class IncomesController < ApplicationController
   # end
 
   def update
-    @income = Income.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
     @income.update(income_params)
     redirect_to('/')
   end
 
   def destroy
-    @income = Income.find(params[:id])
+    @income = current_user.incomes.find(params[:id])
     @income.destroy
     redirect_to :incomes
   end

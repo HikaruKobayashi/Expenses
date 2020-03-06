@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :incomes, dependent: :destroy
+
   # ハッシュ化したパスワードで認証ができるようにする。
   has_secure_password
 
