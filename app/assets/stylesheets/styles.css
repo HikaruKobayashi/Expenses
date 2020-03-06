@@ -3,7 +3,17 @@
 
 /* Log in*/
 .login {
-  margin: 200px 0 200px 300px;
+  width: 500px;
+  margin: 200px auto;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 5px;
+}
+
+.lock-area {
+  text-align: center;
+}
+.lock {
+  font-size: 2em;
 }
 
 .header {
