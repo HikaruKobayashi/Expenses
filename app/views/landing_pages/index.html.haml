@@ -3,72 +3,52 @@
 -# ----------------------------
 = render 'layouts/header'
 
-- if logged_in?
-  .container-fluid
-    .row
-      -# ----------------------------
-      -# sidebar
-      -# ----------------------------
-      = render 'layouts/side_bar'
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
 
-      - if @income.present? || @variable_cost.present? || @fixed_cost.present?
-        %div.col-8{ style: 'margin-left: 30px;'}
-          %h2 【経済状況】
-          .col-12
-            %h4 - 現在の総収入: #{current_user.incomes.sum(:money)}円
-            %h4 - 現在の総変動費: #{current_user.variable_costs.sum(:money)}円
-            %h4 - 現在の総固定費: #{current_user.fixed_costs.sum(:money)}円
-          %button.btn.btn-warning#button-1 総額
-          %button.btn.btn-warning#button-2 目標貯蓄額達成率
-          %p <1単位 = 10,000円>
-          .chart-container.col-12
-            %canvas#myChart.col-12{ style: 'position: relative; width:75vw; height:45vh' }
-          .chart-container
-            %canvas#Chart.col-12{ style: 'display: none; position: relative; width:75vw; height:45vh' }
-      - else
-        %h3 データがありません。
-        %h3 ← メニューから登録してみよう！
-      
-      -# nil許容にする
-      -# - if LandingPage.sum(:goal).present?
-      -#   %P 目標額が登録されているよ
-      -# - else
-      -#   %p 目標額を登録してください。
-      
-      -# %table.table.table-striped.table-bordered
-      -#   %thead
-      -#     %tr
-      -#       %th 日付
-      -#       %th
-      -#       %th
-      -#       -# %th
-      -#   %tbody
-      -#     - @landing_page.each do |lp|
-      -#       %tr
-      -#         %td= lp.goal.to_i
-      -#         %td
-      -#           = link_to '編集', edit_landing_page_path(lp)
-      -#         %td
-      -#           = link_to "削除", lp, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }
-- else
-  .container
-    .row
-      .login
-        .lock-area
-          %i.fa.fa-lock.lock
-        = form_with scope: :session, url: login_path, local: true do |f|
-          .form-group
-            = f.label :email, 'Email'
-            = f.text_field :email, class: 'form-control'
-          .form-group
-            = f.label :password, 'Password'
-            %br
-            = f.password_field :password, class: 'font-control'
-          .lock-area
-            =f.submit 'Log in', class: 'btn btn-warning', style: 'color: rgb(255, 255, 255);'
-            %button.btn.btn-primary
-              = link_to 'Sign up', users_path, class: 'menu-link'
-
+    - if @income.present? || @variable_cost.present? || @fixed_cost.present?
+      %div.col-8{ style: 'margin-left: 30px;'}
+        %h2 【経済状況】
+        .col-12
+          %h4 - 現在の総収入: #{current_user.incomes.sum(:money)}円
+          %h4 - 現在の総変動費: #{current_user.variable_costs.sum(:money)}円
+          %h4 - 現在の総固定費: #{current_user.fixed_costs.sum(:money)}円
+        %button.btn.btn-warning#button-1 総額
+        %button.btn.btn-warning#button-2 目標貯蓄額達成率
+        %p <1単位 = 10,000円>
+        .chart-container.col-12
+          %canvas#myChart.col-12{ style: 'position: relative; width:75vw; height:45vh' }
+        .chart-container
+          %canvas#Chart.col-12{ style: 'display: none; position: relative; width:75vw; height:45vh' }
+    - else
+      %h3 データがありません。
+      %h3 ← メニューから登録してみよう！
+    
+    -# nil許容にする
+    -# - if LandingPage.sum(:goal).present?
+    -#   %P 目標額が登録されているよ
+    -# - else
+    -#   %p 目標額を登録してください。
+    
+    -# %table.table.table-striped.table-bordered
+    -#   %thead
+    -#     %tr
+    -#       %th 日付
+    -#       %th
+    -#       %th
+    -#       -# %th
+    -#   %tbody
+    -#     - @landing_page.each do |lp|
+    -#       %tr
+    -#         %td= lp.goal.to_i
+    -#         %td
+    -#           = link_to '編集', edit_landing_page_path(lp)
+    -#         %td
+    -#           = link_to "削除", lp, method: :delete, data: { confirm: 'この操作を取り戻すことができません。本当に削除しますか？' }
 
 
 -# ----------------------------
