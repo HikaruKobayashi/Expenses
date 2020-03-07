@@ -15,9 +15,9 @@
         %div.col-8{ style: 'margin-left: 30px;'}
           %h2 【経済状況】
           .col-12
-            %h4 - 現在の総収入: #{Income.sum(:money)}円
-            %h4 - 現在の総変動費: #{VariableCost.sum(:money)}円
-            %h4 - 現在の総固定費: #{FixedCost.sum(:money)}円
+            %h4 - 現在の総収入: #{current_user.incomes.sum(:money)}円
+            %h4 - 現在の総変動費: #{current_user.variable_costs.sum(:money)}円
+            %h4 - 現在の総固定費: #{current_user.fixed_costs.sum(:money)}円
           %button.btn.btn-warning#button-1 総額
           %button.btn.btn-warning#button-2 目標貯蓄額達成率
           %p <1単位 = 10,000円>
