@@ -2,8 +2,7 @@ class VariableCostsController < ApplicationController
   before_action :logged_in_user, only:[:edit, :update, :destroy]
 
   def index
-    # @variableCost = VariableCost.order(created_at: :desc)
-    @variableCost = VariableCost.all
+    @variableCost = current_user.variable_costs.all
     # 総変動費
     gon.money_sum = VariableCost.sum(:money)
 
@@ -23,19 +22,20 @@ class VariableCostsController < ApplicationController
   end
 
   def show
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
   end
 
   def new
-    @variableCost = VariableCostCollection.new
+    @variableCost = VariableCost.new
   end
 
   def edit
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
   end
 
   def create
-    @variableCost = VariableCostCollection.new(variable_costs_params)
+    @variableCost = VariableCost.new(variable_cost_params)
+    @variableCost.user_id = current_user.id
     if @variableCost.save
       redirect_to ('/')
     else
@@ -44,7 +44,7 @@ class VariableCostsController < ApplicationController
   end
 
   def update
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
     @variableCost.assign_attributes(variable_cost_params)
     if @variableCost.save
       redirect_to ('/')
@@ -54,7 +54,7 @@ class VariableCostsController < ApplicationController
   end
 
   def destroy
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
     @variableCost.destroy
     redirect_to :variable_costs
   end

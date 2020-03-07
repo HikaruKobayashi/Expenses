@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :incomes, dependent: :destroy
+  has_many :saves, dependent: :destroy
+  has_many :variable_costs, dependent: :destroy
+  has_many :fixed_costs, dependent: :destroy
 
   # ハッシュ化したパスワードで認証ができるようにする。
   has_secure_password

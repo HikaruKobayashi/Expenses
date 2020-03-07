@@ -2,7 +2,7 @@ class FixedCostsController < ApplicationController
   before_action :logged_in_user, only:[:edit, :update, :destroy]
 
   def index
-    @fixedCost = FixedCost.all
+    @fixedCost = current_user.fixed_costs.all
      # 総固定費
     gon.money_sum = FixedCost.sum(:money)
 
@@ -22,19 +22,22 @@ class FixedCostsController < ApplicationController
   end
 
   def show
-    @fixedCost = FixedCost.find(params[:id])
+    @fixedCost = current_user.fixed_costs.find(params[:id])
   end
 
   def new
-    @fixedCost = FixedCostCollection.new
+    @fixedCost = FixedCost.new
+    # @fixedCost = FixedCostCollection.new
   end
 
   def edit
-    @fixedCost = FixedCost.find(params[:id])
+    @fixedCost = current_user.fixed_costs.find(params[:id])
   end
 
   def create
-    @fixedCost = FixedCostCollection.new(fixed_costs_params)
+    # @fixedCost = FixedCostCollection.new(fixed_costs_params)
+    @fixedCost = FixedCost.new(fixed_cost_params)
+    @fixedCost.user_id = current_user.id
     if @fixedCost.save
       redirect_to ('/')
     else
@@ -43,7 +46,7 @@ class FixedCostsController < ApplicationController
   end
 
   def update
-    @fixedCost = FixedCost.find(params[:id])
+    @fixedCost = current_user.fixed_costs.find(params[:id])
     @fixedCost.assign_attributes(fixed_cost_params)
     if @fixedCost.save
       redirect_to ('/')
@@ -53,7 +56,7 @@ class FixedCostsController < ApplicationController
   end
 
   def destroy
-    @fixedCost = FixedCost.find(params[:id])
+    @fixedCost = current_user.fixed_costs.find(params[:id])
     @fixedCost.destroy
     redirect_to :fixed_costs
   end
