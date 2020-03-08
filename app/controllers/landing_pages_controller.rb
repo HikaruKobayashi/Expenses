@@ -1,19 +1,21 @@
 class LandingPagesController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
     @landing_page = LandingPage.all
-    @income = Income.all
-    @variable_cost = VariableCost.all
-    @fixed_cost = FixedCost.all
+    @income = current_user.incomes.all
+    @variable_cost = current_user.variable_costs.all
+    @fixed_cost = current_user.fixed_costs.all
 
     # 残高
-    balance = Income.sum(:money) - (VariableCost.sum(:money) + FixedCost.sum(:money))
+    balance = current_user.incomes.sum(:money) - (current_user.variable_costs.sum(:money) + current_user.fixed_costs.sum(:money))
     gon.balances = "残高#{balance}円"
 
     # 集計値
-    gon.income_sum = Income.sum(:money) / 10000
+    gon.income_sum = current_user.incomes.sum(:money) / 10000
     gon.save_sum = Save.sum(:money) / 10000
-    gon.variable_cost_sum = VariableCost.sum(:money) / 10000
-    gon.fixed_cost_sum = FixedCost.sum(:money) / 10000
+    gon.variable_cost_sum = current_user.variable_costs.sum(:money) / 10000
+    gon.fixed_cost_sum = current_user.fixed_costs.sum(:money) / 10000
 
     # 目標貯金額の達成理率を計算
     gon.goal_value_sum = LandingPage.sum(:goal) / 10000   

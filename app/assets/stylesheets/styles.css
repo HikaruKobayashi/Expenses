@@ -1,6 +1,21 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Merienda');
 
+/* Log in*/
+.login {
+  width: 500px;
+  margin: 200px auto;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 5px;
+}
+
+.lock-area {
+  text-align: center;
+}
+.lock {
+  font-size: 2em;
+}
+
 .header {
   height: 90px;
   background-color: rgb(99,186,217);

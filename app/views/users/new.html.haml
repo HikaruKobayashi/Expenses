@@ -1,0 +1,31 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+.container
+  .row
+    .login
+      .lock-area
+        %i.fa.fa-user-lock.lock
+      = form_with scope: @user, url: users_path, local: true do |f|
+        %div
+          .form-group
+            = f.label :name, 'ユーザー名'
+            = f.text_field :name, class: 'form-control', placeholder: 'ex) 山田太郎'
+          .form-group
+            = f.label :email, 'メールアドレス'
+            = f.text_field :email, class: 'form-control', placeholder: 'ex)sample@example.com'
+          .form-group
+            = f.label :password, 'パスワード'
+            %br
+            %td= f.password_field  :password, id: :user_password, class: 'form_txt', placeholder: 'パスワード'
+            %td= f.password_field :password_confirmation, id: :user_password_confirmation, class: 'form_txt', placeholder: 'パスワード（確認用）'
+          .lock-area
+            = f.submit 'Sign up', class: 'btn btn-primary submit-btn'
+            %button.btn.btn-danger
+              = link_to 'Cancel', root_path, class: 'menu-link'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'

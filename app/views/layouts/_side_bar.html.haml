@@ -41,3 +41,8 @@
         %button.btn.btn-secondary
           %i.fa.fa-paper-plane
           = link_to 'お問い合わせ', inquiry_path, class: 'nav-link menu-link contact-link'
+    %ul.nav.flex-colum.nav.nav-sidebar{ style: 'margin-left: 20px;' }
+      %li.nav-item
+        %button.btn.btn-warning{ style: 'margin: 5px; width: 160px;' }
+          %i.fa.fa-sign-in-alt.menu-icon
+          = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link menu-link'

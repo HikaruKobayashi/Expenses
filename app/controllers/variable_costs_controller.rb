@@ -1,9 +1,10 @@
 class VariableCostsController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
-    # @variableCost = VariableCost.order(created_at: :desc)
-    @variableCost = VariableCost.all
+    @variableCost = current_user.variable_costs.all
     # 総変動費
-    gon.money_sum = VariableCost.sum(:money)
+    gon.money_sum = current_user.variable_costs.sum(:money)
 
     # 今日を取得する
     t = Time.now
@@ -15,25 +16,26 @@ class VariableCostsController < ApplicationController
     my_week = []
     gon.week = ["6日前", "5日前", "4日前", "3日前", "2日前", "昨日", "今日"]
     7.times do |w|
-      my_week.push(VariableCost.where(created_at: ("#{t.ago(w.days)}").in_time_zone.all_day).sum(:money) / 10000)
+      my_week.push(current_user.variable_costs.where(created_at: ("#{t.ago(w.days)}").in_time_zone.all_day).sum(:money) / 10000)
     end
     gon.money_week = my_week.reverse!
   end
 
   def show
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
   end
 
   def new
-    @variableCost = VariableCostCollection.new
+    @variableCost = VariableCost.new
   end
 
   def edit
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
   end
 
   def create
-    @variableCost = VariableCostCollection.new(variable_costs_params)
+    @variableCost = VariableCost.new(variable_cost_params)
+    @variableCost.user_id = current_user.id
     if @variableCost.save
       redirect_to ('/')
     else
@@ -42,7 +44,7 @@ class VariableCostsController < ApplicationController
   end
 
   def update
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
     @variableCost.assign_attributes(variable_cost_params)
     if @variableCost.save
       redirect_to ('/')
@@ -52,15 +54,15 @@ class VariableCostsController < ApplicationController
   end
 
   def destroy
-    @variableCost = VariableCost.find(params[:id])
+    @variableCost = current_user.variable_costs.find(params[:id])
     @variableCost.destroy
     redirect_to :variable_costs
   end
 
   def report
-    @variableCost = VariableCost.all
+    @variableCost = current_user.variable_costs.all
     # 総変動費
-    gon.money_sum = VariableCost.sum(:money)
+    gon.money_sum = current_user.variable_costs.sum(:money)
 
     # 今日を取得する
     t = Time.now
@@ -73,7 +75,7 @@ class VariableCostsController < ApplicationController
     my_year = []
     year = []
     3.times do |y|
-      my_year.push(VariableCost.where(created_at: ("#{the_beginning.ago(y.years)}").in_time_zone.all_year).sum(:money) / 10000)
+      my_year.push(current_user.variable_costs.where(created_at: ("#{the_beginning.ago(y.years)}").in_time_zone.all_year).sum(:money) / 10000)
       year.push("#{this_year-y}")
     end
     gon.money_year = my_year.reverse!
@@ -83,7 +85,7 @@ class VariableCostsController < ApplicationController
     gon.money_month = []
     gon.month = []
     12.times do |m|
-      gon.money_month.push(VariableCost.where(created_at: ("#{the_beginning.since(m.month)}").in_time_zone.all_month).sum(:money) / 10000)
+      gon.money_month.push(current_user.variable_costs.where(created_at: ("#{the_beginning.since(m.month)}").in_time_zone.all_month).sum(:money) / 10000)
       gon.month.push("#{m+1}月")
     end
 
@@ -91,7 +93,7 @@ class VariableCostsController < ApplicationController
     my_week = []
     gon.week = ["6日前", "5日前", "4日前", "3日前", "2日前", "昨日", "今日"]
     7.times do |w|
-      my_week.push(VariableCost.where(created_at: ("#{t.ago(w.days)}").in_time_zone.all_day).sum(:money) / 10000)
+      my_week.push(current_user.variable_costs.where(created_at: ("#{t.ago(w.days)}").in_time_zone.all_day).sum(:money) / 10000)
     end
     gon.money_week = my_week.reverse!
   end

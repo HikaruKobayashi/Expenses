@@ -1,4 +1,6 @@
 class InquiryController < ApplicationController
+  before_action :logged_in_user, only:[:edit, :update, :destroy]
+
   def index
     @inquiry = Inquiry.new
     render :action => 'index'

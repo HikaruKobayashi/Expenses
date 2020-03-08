@@ -13,21 +13,37 @@
     %div.col-8{ style: 'margin-left: 30px;'}
       %h2 【固定費登録】
       .col-12
-        = form_with model: @fixedCost, url: fixed_costs_path, local: true do |form|
-          - @fixedCost.collection.each do |fixed_cost|
-            = fields_for 'fixed_cost[]', fixed_cost do |f|
-              .form-group
-                = f.label :name, '商品名'
-                = f.text_field :name, class: 'form-control'
-              .form-group
-                = f.label :content, '用途'
-                = f.text_area :content, class: 'form-control', rows:5
-              .form-group
-                = f.label :money, '金額'
-                = f.number_field :money, min: 0, max: 10000000
-          = form.submit '登録', class: 'btn btn-primary'
+        -# = form_with model: @fixedCost, url: fixed_costs_path, local: true do |form|
+        -#   - @fixedCost.collection.each do |fixed_cost|
+        -#     = fields_for 'fixed_cost[]', fixed_cost do |f|
+        -#       .form-group
+        -#         = f.label :name, '商品名'
+        -#         = f.text_field :name, class: 'form-control'
+        -#       .form-group
+        -#         = f.label :content, '用途'
+        -#         = f.text_area :content, class: 'form-control', rows:5
+        -#       .form-group
+        -#         = f.label :money, '金額'
+        -#         = f.number_field :money, min: 0, max: 10000000
+        -#   = form.submit '登録', class: 'btn btn-primary'
+        -#   %button.btn.btn-danger
+        -#     = link_to 'キャンセル', root_path, class: 'cancel-btn'
+        = form_for @fixedCost do |f|
+          .form-group
+            = f.label :name, '商品名'
+            = f.text_field :name, class: 'form-control'
+            %small#poster-tip.form-text.text-muted
+          .form-group
+            = f.label :content, '内容'
+            = f.text_area :content, class: 'form-control', rows:5
+          .form-group
+            = f.label :money, '金額'
+            = f.number_field :money, min: 0, max: 10000000
+
+          = f.submit '登録', class: 'btn btn-primary'
           %button.btn.btn-danger
             = link_to 'キャンセル', root_path, class: 'cancel-btn'
+
 
 -# ----------------------------
 -# footer
