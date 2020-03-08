@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'landing_pages#index'
+  root to: 'sessions#index'
   resources :landing_pages
   get "/report" => "landing_pages#report"
 
