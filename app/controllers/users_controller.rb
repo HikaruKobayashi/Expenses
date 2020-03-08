@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to("/")
     else
-      render("users/new")
+      render("/users/new")
     end
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-    redirect_to('admin/users')
+    redirect_to('/users')
   end
 
   private
