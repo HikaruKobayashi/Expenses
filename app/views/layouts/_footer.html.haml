@@ -3,18 +3,19 @@
     .row
       .col-sm-3
         %h4.title Money Hub
-        %span.acount-icon
-          %a{:href => landing_pages_path}
-            %i.fa.fa-home.menu-icon
-            ホーム
-          %a{:href => incomes_path}
-            %i.fa.fa-coins.menu-icon
-            収入
-          %a{:href => variable_costs_path}
-            %i.fa.fa-comment-dollar.menu-icon
-            変動費
-          %a{:href => fixed_costs_path}
-            %i.fa.fa-comment-dollar.menu-icon
-            固定費
+        - if logged_in?
+          %span.acount-icon
+            %a{:href => landing_pages_path}
+              %i.fa.fa-home.menu-icon
+              ホーム
+            %a{:href => incomes_path}
+              %i.fa.fa-coins.menu-icon
+              収入
+            %a{:href => variable_costs_path}
+              %i.fa.fa-comment-dollar.menu-icon
+              変動費
+            %a{:href => fixed_costs_path}
+              %i.fa.fa-comment-dollar.menu-icon
+              固定費
     %hr/
     .row.text-center © 2020. Made by Hikaru.
