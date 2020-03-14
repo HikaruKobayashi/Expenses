@@ -4,7 +4,7 @@
 /* Log in*/
 .login {
   width: 500px;
-  margin: 200px auto 100px;
+  margin: 200px auto 250px;
   border: 2px solid rgb(200, 200, 200);
   border-radius: 5px;
 }
@@ -45,21 +45,6 @@
 
 .menu-icon {
   font-size: 25px;
-}
-
-.commentary {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-.image {
-  width: 500px;
-  margin: 5px;
-}
-
-.report {
-  width: 650px;
-  margin: 5px;
 }
 
 /* Body */
