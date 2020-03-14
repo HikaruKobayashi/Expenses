@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_091138) do
+ActiveRecord::Schema.define(version: 2020_03_14_151704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assets", force: :cascade do |t|
+  create_table "deposits", force: :cascade do |t|
     t.string "name"
-    t.string "content"
     t.integer "money"
+    t.string "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(version: 2020_03_07_091138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "pay_day"
-  end
-
-  create_table "saves", force: :cascade do |t|
-    t.string "name"
-    t.integer "money"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
