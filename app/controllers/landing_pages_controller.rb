@@ -6,6 +6,7 @@ class LandingPagesController < ApplicationController
     @income = current_user.incomes.all
     @variable_cost = current_user.variable_costs.all
     @fixed_cost = current_user.fixed_costs.all
+    @deposit = current_user.deposits.all
 
     # 残高
     balance = current_user.incomes.sum(:money) - (current_user.variable_costs.sum(:money) + current_user.fixed_costs.sum(:money))
@@ -13,13 +14,13 @@ class LandingPagesController < ApplicationController
 
     # 集計値
     gon.income_sum = current_user.incomes.sum(:money) / 10000
-    gon.save_sum = Save.sum(:money) / 10000
+    gon.save_sum = current_user.deposits.sum(:money) / 10000
     gon.variable_cost_sum = current_user.variable_costs.sum(:money) / 10000
     gon.fixed_cost_sum = current_user.fixed_costs.sum(:money) / 10000
 
     # 目標貯金額の達成理率を計算
     gon.goal_value_sum = LandingPage.sum(:goal) / 10000   
-    goal_value = Save.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
+    goal_value = current_user.deposits.sum(:money).to_f / LandingPage.sum(:goal).to_f * 100
     gon.goal = "#{goal_value.floor(1).to_f}%"
   end
 

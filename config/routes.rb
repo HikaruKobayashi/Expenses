@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   get "/variable_costs_report" => "variable_costs#report"
   resources :fixed_costs
   get "/fixed_costs_report" => "fixed_costs#report"
-
-  resources :save
-  get "/saves_report" => "save#report"
+  resources :deposits
+  get "/deposits_report" => "deposits#report"
 
   get '/inquiry' => 'inquiry#index'
   post '/inquiry/confirm' => 'inquiry#confirm'

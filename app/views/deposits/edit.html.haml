@@ -1,0 +1,34 @@
+-# ----------------------------
+-# header
+-# ----------------------------
+= render 'layouts/header'
+
+.container-fluid
+  .row
+    -# ----------------------------
+    -# sidebar
+    -# ----------------------------
+    = render 'layouts/side_bar'
+
+    %div.col-8{ style: 'margin-left: 30px;'}
+      %h2 【貯金登録の編集】
+      .col-12
+        = form_for @deposit do |f|
+          .form-group
+            = f.label :name, '商品名'
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :content, '内容'
+            = f.text_area :content, class: 'form-control', rows:5
+          .form-group
+            = f.label :money, '金額'
+            = f.number_field :money, min: 0, max: 10000000
+
+          = f.submit '登録', class: 'btn btn-primary'
+          %button.btn.btn-danger
+            = link_to 'キャンセル', fixed_costs_path, class: 'cancel-btn'
+
+-# ----------------------------
+-# footer
+-# ----------------------------
+= render 'layouts/footer'
