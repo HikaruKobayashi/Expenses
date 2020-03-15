@@ -15,7 +15,7 @@ Money Hubはお金の出し入れをよりシンプルに見える化する家�
 <img width="1202" alt="スクリーンショット 2020-02-18 2 33 30" src="https://user-images.githubusercontent.com/51415392/74675565-2a7f9e00-51f7-11ea-8082-228dab218723.png">
 
 ## URL
-https://money-hub-sample.herokuapp.com/
+https://money-hub-app.herokuapp.com/
 
 ## 動作方法
 1.アプリを作成したいディレクトリに移動する。ex) `cd desktop`  
